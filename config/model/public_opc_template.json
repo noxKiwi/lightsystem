@@ -1,0 +1,51 @@
+{
+  "fields": {
+    "opc_template_id": {
+      "name": "opc_template_id",
+      "display": "ID",
+      "default": 0,
+      "min": 0,
+      "max": 4294967296,
+      "type": "number_natural"
+    },
+    "opc_template_created": {
+      "name": "opc_template_created",
+      "display": "CREATED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "opc_template_modified": {
+      "name": "opc_template_modified",
+      "display": "MODIFIED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "opc_template_flags": {
+      "name": "opc_template_flags",
+      "display": "FLAGS",
+      "type": "number_integer",
+      "required": true,
+      "default": 0,
+      "min": 0,
+      "max": 127
+    },
+    "opc_template_name": {
+      "name": "opc_template_name",
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "opc_template_data": {
+      "name": "opc_template_data",
+      "type": "structure",
+      "required": true,
+      "unique": false
+    }
+  },
+  "primary": [
+    "opc_template_id"
+  ],
+  "flags": {
+    "1": "active"
+  }
+}

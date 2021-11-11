@@ -1,0 +1,90 @@
+{
+  "main": [
+    {
+      "icon": "bell",
+      "context": "alarm",
+      "view": "dashboard",
+      "sub": [
+        {
+          "context": "alarmgroup",
+          "view": "crudlist",
+          "icon": "cog"
+        },
+        {
+          "context": "alarm",
+          "view": "crudlist",
+          "icon": "bell"
+        },
+        {
+          "context": "recipient",
+          "view": "crudlist",
+          "icon": "user"
+        },
+        {
+          "context": "notifier",
+          "view": "crudlist",
+          "icon": "microphone"
+        }
+      ]
+    },
+    {
+      "context": "visu",
+      "view": "dashboard",
+      "icon": "desktop",
+      "sub": [
+        {
+          "context": "animation",
+          "view": "crudlist",
+          "icon": "eye"
+        },
+        {
+          "context": "color",
+          "view": "crudlist",
+          "icon": "eye"
+        },
+        {
+          "context": "panel",
+          "view": "crudlist",
+          "icon": "desktop"
+        },
+        {
+          "context": "panelelement",
+          "view": "crudlist",
+          "icon": "sitemap"
+        },
+        {
+          "context": "svgtag",
+          "view": "crudlist",
+          "icon": "code"
+        },
+        {
+          "context": "attribute",
+          "view": "crudlist",
+          "icon": "code"
+        }
+      ]
+    },
+    {
+      "context": "process",
+      "view": "dashboard",
+      "icon": "bolt",
+      "sub": [
+        {
+          "context": "address",
+          "view": "crudlist",
+          "icon": "tag"
+        },
+        {
+          "context": "group",
+          "view": "crudlist",
+          "icon": "sitemap"
+        },
+        {
+          "context": "variable",
+          "view": "crudlist",
+          "icon": "asterisk"
+        }
+      ]
+    }
+  ]
+}

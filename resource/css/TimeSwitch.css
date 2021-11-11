@@ -1,0 +1,10 @@
+/** TimeSwitch **/
+.timeSwitch th {text-align : center;}
+
+.tsField {height : 15px;width : 15px;}
+
+.timeSwitch td {border : 1px solid var(--TimeSwitchBorders);}
+
+.on {background : var(--TimeSwitchOn);}
+
+.off {background : var(--TimeSwitchOff)}

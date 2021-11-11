@@ -1,0 +1,121 @@
+{
+  "fields": {
+    "timeswitch_id": {
+      "name": "timeswitch_id",
+      "display": "ID",
+      "default": 0,
+      "min": 0,
+      "max": 4294967296,
+      "type": "number_natural"
+    },
+    "timeswitch_created": {
+      "name": "timeswitch_created",
+      "display": "CREATED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "timeswitch_modified": {
+      "name": "timeswitch_modified",
+      "display": "MODIFIED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "timeswitch_flags": {
+      "name": "timeswitch_flags",
+      "display": "FLAGS",
+      "type": "number_integer",
+      "required": true,
+      "default": 0,
+      "min": 0,
+      "max": 127
+    },
+    "timeswitch_value_on": {
+      "name": "timeswitch_value_on",
+      "type": "text",
+      "required": true,
+      "unique": false
+    },
+    "timeswitch_value_off": {
+      "name": "timeswitch_value_off",
+      "type": "text",
+      "required": true,
+      "unique": false
+    },
+    "timeswitch_week": {
+      "name": "timeswitch_week",
+      "type": "date",
+      "required": true,
+      "unique": false
+    },
+    "timeswitch_monday": {
+      "name": "timeswitch_monday",
+      "type": "text",
+      "required": true,
+      "unique": false
+    },
+    "timeswitch_tuesday": {
+      "name": "timeswitch_tuesday",
+      "type": "text",
+      "required": true,
+      "unique": false
+    },
+    "timeswitch_wednesday": {
+      "name": "timeswitch_wednesday",
+      "type": "text",
+      "required": true,
+      "unique": false
+    },
+    "timeswitch_thursday": {
+      "name": "timeswitch_thursday",
+      "type": "text",
+      "required": true,
+      "unique": false
+    },
+    "timeswitch_friday": {
+      "name": "timeswitch_friday",
+      "type": "text",
+      "required": true,
+      "unique": false
+    },
+    "timeswitch_saturday": {
+      "name": "timeswitch_saturday",
+      "type": "text",
+      "required": true,
+      "unique": false
+    },
+    "timeswitch_sunday": {
+      "name": "timeswitch_sunday",
+      "type": "text",
+      "required": true,
+      "unique": false
+    },
+    "opc_item_auto": {
+      "name": "opc_item_auto",
+      "type": "number_natural",
+      "required": true,
+      "unique": true,
+      "foreign": {
+        "model": "\\noxkiwi\\lightsystem\\Model\\OpcItemModel",
+        "value": "opc_item_id",
+        "display": "{opc_item_address}"
+      }
+    },
+    "opc_item_write": {
+      "name": "opc_item_write",
+      "type": "number_natural",
+      "required": true,
+      "unique": true,
+      "foreign": {
+        "model": "\\noxkiwi\\lightsystem\\Model\\OpcItemModel",
+        "value": "opc_item_id",
+        "display": "{opc_item_address}"
+      }
+    }
+  },
+  "primary": [
+    "timeswitch_id"
+  ],
+  "flags": {
+    "1": "active"
+  }
+}

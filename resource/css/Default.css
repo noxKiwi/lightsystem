@@ -1,0 +1,39 @@
+:root {
+    /** Main **/
+    --MainBackground              : black url('/login.jpg') top left no-repeat;
+    --MainBackgroundSize          : 100%;
+
+    /** Panel */
+    --PanelBackground             : rgba(255, 255, 255, 0.35);
+
+    /** Loader **/
+    --LoaderBackgroundColor       : rgba(255, 255, 255, 0.3);
+    --LoaderShadow                : rgba(0, 127, 190, 0.6);
+    --LoaderForeground            : #007fbe;
+
+    /** ConnectionFailure **/
+    --ConnectionFailureFade       : rgba(0, 0, 0, 0.5);
+    --ConnectionFailureText       : #ffaa00;
+    --ConnectionFailureBackground : rgba(0, 0, 0, 0.7);
+
+    /** AlarmControl **/
+    --AlarmControlRowAlarm        : red;
+
+    /** TimeSwitch **/
+    --TimeSwitchOn                : rgba(128, 255, 0, 0.8);
+    --TimeSwitchOff               : rgba(255, 64, 64, 0.8);
+    --TimeSwitchBorders           : white;
+
+    /** Tech unit **/
+    --UnitWorking                 : #ff00ff;
+    --UnitEnabled                 : lime;
+    --UnitDisabled                : grey;
+
+    /** Aggregate **/
+    --CommandOn                   : lime;
+    --CommandOff                  : grey;
+
+    /** Water facility **/
+    --WaterUntreated              : #339933;
+    --WaterClear                  : #3333cc;
+}

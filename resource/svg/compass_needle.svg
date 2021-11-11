@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:cc="http://creativecommons.org/ns#"
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+        xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+        xmlns="http://www.w3.org/2000/svg"
+        width="500"
+        height="500"
+        viewBox="0 0 132.29167 132.29167"
+        version="1.1"
+        id="svg4635"
+        sodipodi:docname="needle.svg"
+        inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
+    <defs
+            id="defs4629"/>
+    <sodipodi:namedview
+            id="base"
+            pagecolor="#ffffff"
+            bordercolor="#666666"
+            borderopacity="1.0"
+            inkscape:pageopacity="0.0"
+            inkscape:pageshadow="2"
+            inkscape:zoom="1.4"
+            inkscape:cx="312.90383"
+            inkscape:cy="235.87405"
+            inkscape:document-units="mm"
+            inkscape:current-layer="layer1"
+            showgrid="false"
+            inkscape:window-width="1920"
+            inkscape:window-height="1017"
+            inkscape:window-x="1912"
+            inkscape:window-y="-8"
+            inkscape:window-maximized="1"
+            units="px"/>
+    <metadata
+            id="metadata4632">
+        <rdf:RDF>
+            <cc:Work
+                    rdf:about="">
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type
+                        rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+                <dc:title></dc:title>
+            </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <g
+            inkscape:label="Ebene 1"
+            inkscape:groupmode="layer"
+            id="layer1"
+            transform="translate(0,-164.70834)">
+        <polygon
+                transform="matrix(0.25972225,-0.24693888,0.25972225,0.24693888,-62.642863,230.85417)"
+                style="fill:#cdcdce"
+                points="233,267 250,345 267,267 345,250 267,233 250,155 233,233 155,250 "
+                id="polygon3753"/>
+        <polygon
+                transform="matrix(0.25972225,-0.24693888,0.25972225,0.24693888,-62.642863,230.85417)"
+                style="fill:none;stroke:#434242;stroke-width:10;stroke-linejoin:round"
+                points="265,265 356,144 235,235 144,356 "
+                id="polygon3755"/>
+        <polygon
+                transform="matrix(0.25972225,-0.24693888,0.25972225,0.24693888,-62.642863,230.85417)"
+                style="fill:#279dff"
+                points="265,265 250,250 353,147 "
+                id="polygon3757"/>
+        <polygon
+                transform="matrix(0.25972225,-0.24693888,0.25972225,0.24693888,-62.642863,230.85417)"
+                style="fill:#474747"
+                points="235,235 250,250 147,353 "
+                id="polygon3759"/>
+        <polygon
+                transform="matrix(0.25972225,-0.24693888,0.25972225,0.24693888,-62.642863,230.85417)"
+                style="fill:#6d6d6d"
+                points="265,265 250,250 147,353 "
+                id="polygon3761"/>
+        <polygon
+                transform="matrix(0.25972225,-0.24693888,0.25972225,0.24693888,-62.642863,230.85417)"
+                style="fill:#0076d8"
+                points="235,235 250,250 353,147 "
+                id="polygon3763"/>
+        <ellipse
+                cy="230.85466"
+                cx="67.217728"
+                style="fill:#ffffff;stroke:#434242;stroke-width:1.15228713"
+                id="circle3765"
+                rx="4.7269454"
+                ry="4.494288"/>
+    </g>
+</svg>

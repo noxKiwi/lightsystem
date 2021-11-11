@@ -1,0 +1,10 @@
+/** Main **/
+.aggregateOn {background : var(--AggregateOn);}
+
+.aggregateOff {background : var(--AggregateOff);}
+
+.bcOn {background : var(--CommandOn);}
+
+.bcOff {background : var(--CommandOff);}
+
+.waterRaw {}

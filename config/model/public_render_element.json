@@ -1,0 +1,64 @@
+{
+  "fields": {
+    "render_element_id": {
+      "name": "render_element_id",
+      "display": "ID",
+      "default": 0,
+      "min": 0,
+      "max": 4294967296,
+      "type": "number_natural"
+    },
+    "render_element_created": {
+      "name": "render_element_created",
+      "display": "CREATED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "render_element_modified": {
+      "name": "render_element_modified",
+      "display": "MODIFIED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "render_element_flags": {
+      "name": "render_element_flags",
+      "default": 0,
+      "min": 0,
+      "max": 128,
+      "type": "number_integer"
+    },
+    "render_element_name": {
+      "name": "render_element_name",
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "render_element_width": {
+      "name": "render_element_width",
+      "type": "number_natural",
+      "required": true,
+      "default": 720,
+      "min": 0,
+      "max": 1920
+    },
+    "render_element_height": {
+      "name": "render_element_height",
+      "type": "number_natural",
+      "required": true,
+      "default": 480,
+      "min": 0,
+      "max": 1080
+    },
+    "render_element_data": {
+      "name": "render_element_data",
+      "type": "structure",
+      "required": true
+    }
+  },
+  "primary": [
+    "render_element_id"
+  ],
+  "flags": {
+    "1": "active"
+  }
+}

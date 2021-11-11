@@ -1,0 +1,57 @@
+{
+  "fields": {
+    "audit_id": {
+      "name": "audit_id",
+      "display": "ID",
+      "default": 0,
+      "min": 0,
+      "max": 4294967296,
+      "type": "number_natural"
+    },
+    "audit_created": {
+      "name": "audit_created",
+      "display": "CREATED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "audit_modified": {
+      "name": "audit_modified",
+      "display": "MODIFIED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "audit_flags": {
+      "name": "audit_flags",
+      "display": "FLAGS",
+      "type": "number_integer",
+      "required": true,
+      "default": 0,
+      "min": 0,
+      "max": 127
+    },
+    "audit_type": {
+      "name": "audit_type",
+      "type": "text",
+      "required": true,
+      "unique": false
+    },
+    "audit_data": {
+      "name": "audit_data",
+      "type": "text",
+      "required": true,
+      "unique": false
+    }
+  },
+  "required": [
+    "audit_data"
+  ],
+  "primary": [
+    "audit_id"
+  ],
+  "unique": [
+  ],
+  "flags": {
+    "1": "active"
+  }
+}
+

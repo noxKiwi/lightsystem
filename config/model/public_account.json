@@ -1,0 +1,43 @@
+{
+  "fields": {
+    "account_id": {
+      "name": "account_id",
+      "display": "ID",
+      "default": 0,
+      "min": 0,
+      "max": 4294967296,
+      "type": "number_natural"
+    },
+    "account_created": {
+      "name": "account_created",
+      "display": "CREATED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "account_modified": {
+      "name": "account_modified",
+      "display": "MODIFIED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "account_flags": {
+      "name": "account_flags",
+      "default": 0,
+      "min": 0,
+      "max": 128,
+      "type": "number_integer"
+    },
+    "account_name": {
+      "name": "account_text",
+      "type": "text",
+      "required": true,
+      "unique": false
+    }
+  },
+  "primary": [
+    "account_id"
+  ],
+  "flags": {
+    "1": "active"
+  }
+}

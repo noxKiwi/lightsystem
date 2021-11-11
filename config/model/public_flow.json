@@ -1,0 +1,62 @@
+{
+  "fields": {
+    "flow_id": {
+      "name": "flow_id",
+      "display": "ID",
+      "default": 0,
+      "min": 0,
+      "max": 4294967296,
+      "type": "number_natural"
+    },
+    "flow_created": {
+      "name": "flow_created",
+      "display": "CREATED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "flow_modified": {
+      "name": "flow_modified",
+      "display": "MODIFIED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "flow_flags": {
+      "name": "flow_flags",
+      "default": 0,
+      "min": 0,
+      "max": 128,
+      "type": "number_integer"
+    },
+    "flow_text": {
+      "name": "flow_text",
+      "type": "text",
+      "required": true,
+      "unique": false
+    },
+    "flow_value": {
+      "name": "flow_value",
+      "type": "numeric",
+      "required": true,
+      "unique": true
+    },
+    "account_id": {
+      "name": "account_id",
+      "type": "number_natural",
+      "required": true,
+      "unique": true,
+      "foreign": {
+        "model": "\\noxkiwi\\lightsystem\\Model\\AccountModel",
+        "value": "account_id",
+        "display": "{account_name}"
+      }
+    }
+  },
+  "primary": [
+    "flow_id"
+  ],
+  "flags": {
+    "1": "active",
+    "2": "planned",
+    "4": "superfluous"
+  }
+}

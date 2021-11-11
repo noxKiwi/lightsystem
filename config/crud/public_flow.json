@@ -1,0 +1,52 @@
+{
+  "action": {
+    "element": [
+      {
+        "link": {
+          "view": "crudedit"
+        },
+        "icon": "edit"
+      },
+      {
+        "link": {
+          "view": "cruddelete"
+        },
+        "icon": "remove"
+      }
+    ],
+    "top": [
+      {
+        "link": {
+          "view": "crudcreate"
+        },
+        "icon": "plus"
+      }
+    ],
+    "bulk": [
+      {
+        "link": {
+          "view": "crudedit"
+        },
+        "icon": "edit"
+      },
+      {
+        "link": {
+          "view": "cruddelete"
+        },
+        "icon": "remove"
+      },
+      {
+        "link": {
+          "view": "bulkenable"
+        },
+        "icon": "remove"
+      },
+      {
+        "link": {
+          "view": "bulkdisable"
+        },
+        "icon": "remove"
+      }
+    ]
+  }
+}

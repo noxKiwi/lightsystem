@@ -1,0 +1,14 @@
+body {
+    background            : var(--MainBackground);
+    background-size       : var(--MainBackgroundSize);
+    -webkit-touch-callout : none;
+    -webkit-user-select   : none;
+    -khtml-user-select    : none;
+    -moz-user-select      : none;
+    -ms-user-select       : none;
+    user-select           : none;
+}
+
+.blocked {cursor : not-allowed !important;}
+
+.dropdown-menu {z-index : 9999;}

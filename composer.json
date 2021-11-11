@@ -1,0 +1,41 @@
+{
+  "name": "noxkiwi/lightsystem",
+  "description": "This is the lightsystem app",
+  "version": "0.1.0",
+  "type": "package",
+  "keywords": [
+    "genius"
+  ],
+  "homepage": "https://nox.kiwi",
+  "time": "2016-04-13",
+  "authors": [
+    {
+      "name": "Jan Nox",
+      "email": "jan@nox.kiwi",
+      "homepage": "https://nox.kiwi",
+      "role": "Lead Developer"
+    }
+  ],
+  "require": {
+    "ext-json": "*",
+    "ext-sockets": "*",
+    "ext-xmlrpc": "*",
+    "ext-curl": "*",
+    "noxkiwi/core": "*",
+    "noxkiwi/dataabstraction": "*",
+    "noxkiwi/database": "*",
+    "noxkiwi/mailer": "*",
+    "noxkiwi/observing": "*",
+    "noxkiwi/singleton": "*",
+    "noxkiwi/log": "*",
+    "noxkiwi/cache": "*",
+    "noxkiwi/crud": "*",
+    "noxkiwi/queue": "*",
+    "noxkiwi/translator": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "noxkiwi\\lightsystem\\": "backend/class/"
+    }
+  }
+}

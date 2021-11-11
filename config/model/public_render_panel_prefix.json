@@ -1,0 +1,59 @@
+{
+  "fields": {
+    "render_panel_prefix_id": {
+      "name": "render_panel_prefix_id",
+      "display": "ID",
+      "default": 0,
+      "min": 0,
+      "max": 4294967296,
+      "type": "number_natural"
+    },
+    "render_panel_prefix_created": {
+      "name": "render_panel_prefix_created",
+      "display": "CREATED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "render_panel_prefix_modified": {
+      "name": "render_panel_prefix_modified",
+      "display": "MODIFIED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "render_panel_prefix_flags": {
+      "name": "render_panel_prefix_flags",
+      "default": 0,
+      "min": 0,
+      "max": 128,
+      "type": "number_integer"
+    },
+    "render_panel_prefix_name": {
+      "name": "render_panel_prefix_name",
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "render_panel_prefix_prefix": {
+      "name": "render_panel_prefix_svg",
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "render_panel_id": {
+      "name": "render_panel_id",
+      "type": "number_natural",
+      "required": true,
+      "foreign": {
+        "model": "\\noxkiwi\\lightsystem\\Model\\RenderPanelModel",
+        "value": "render_panel_id",
+        "display": "{render_panel_name}"
+      }
+    }
+  },
+  "primary": [
+    "render_panel_prefix_id"
+  ],
+  "flags": {
+    "1": "active"
+  }
+}

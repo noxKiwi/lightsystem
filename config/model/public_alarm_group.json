@@ -1,0 +1,52 @@
+{
+  "fields": {
+    "alarm_group_id": {
+      "name": "alarm_group_id",
+      "display": "ID",
+      "default": 0,
+      "min": 0,
+      "max": 4294967296,
+      "type": "number_natural"
+    },
+    "alarm_group_created": {
+      "name": "alarm_group_created",
+      "display": "CREATED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "alarm_group_modified": {
+      "name": "alarm_group_modified",
+      "display": "MODIFIED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "alarm_group_flags": {
+      "name": "alarm_group_flags",
+      "display": "FLAGS",
+      "type": "number_integer",
+      "required": true,
+      "default": 0,
+      "min": 0,
+      "max": 127
+    },
+    "alarm_group_name": {
+      "name": "alarm_group_name",
+      "type": "text",
+      "required": true,
+      "unique": true
+    }
+  },
+  "required": [
+    "alarm_group_name"
+  ],
+  "primary": [
+    "alarm_group_id"
+  ],
+  "unique": [
+    "alarm_group_name"
+  ],
+  "flags": {
+    "1": "active",
+    "2": "silenced"
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "timeZone": "UTC",
+  "defaultcontext": "dashboard",
+  "defaulttemplate": "json",
+  "context": {
+    "resource": {
+      "type": "resource"
+    },
+    "dashboard": {
+      "defaultview": "show",
+      "view": {
+        "show": {
+          "template": "lightsystem"
+        },
+        "screen": {
+          "template": "screen"
+        },
+        "bind": {
+        },
+        "data": {
+        },
+        "dashboard": {
+          "template": "smartadmin"
+        }
+      }
+    },
+    "login": {
+      "defaultview": "login",
+      "view": {
+        "login": {
+          "template": "login"
+        },
+        "logout": {
+        }
+      }
+    },
+    "item": {
+      "defaultview": "update",
+      "view": {
+        "update": {
+        },
+        "menu": {
+        },
+        "info": {
+        },
+        "write": {
+        },
+        "bind": {
+        }
+      }
+    },
+    "forwarding": {
+      "defaultview": "forward",
+      "view": {
+        "forward": {
+        }
+      }
+    },
+    "timeswitch": {
+      "defaultview": "info",
+      "view": {
+        "get": {
+        },
+        "set": {
+        }
+      }
+    },
+    "frontend": {
+      "defaultview": "update",
+      "view": {
+        "update": {
+        },
+        "updateitems": {
+        }
+      }
+    },
+    "data": {
+      "defaultview": "work",
+      "view": {
+        "work": {}
+      }
+    },
+    "event": {
+      "defaultview": "work",
+      "view": {
+        "work": {}
+      }
+    },
+    "alarm": {
+      "defaultview": "work",
+      "view": {
+        "dashboard": {},
+        "acknowledge": {},
+        "info": {}
+      }
+    },
+    "visu": {
+      "defaultview": "dashboard",
+      "view": {
+        "dashboard": {}
+      }
+    },
+    "process": {
+      "defaultview": "dashboard",
+      "view": {
+        "dashboard": {}
+      }
+    },
+    "panel": {
+      "type": "crud",
+      "view": {
+        "show": {
+        }
+      }
+    },
+    "worker": {
+      "defaultview": "work",
+      "view": {
+        "alarm": {},
+        "work": {},
+        "persistence": {},
+        "archiver": {},
+        "timeswitch": {}
+      }
+    },
+    "crudfrontend": {
+      "defaultview": "list",
+      "view": {
+        "list": {}
+      }
+    }
+  }
+}

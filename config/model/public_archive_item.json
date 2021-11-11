@@ -1,0 +1,69 @@
+{
+  "fields": {
+    "archive_item_id": {
+      "name": "archive_item_id",
+      "display": "ID",
+      "default": 0,
+      "min": 0,
+      "max": 4294967296,
+      "type": "number_natural"
+    },
+    "archive_item_created": {
+      "name": "archive_item_created",
+      "display": "CREATED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "archive_item_modified": {
+      "name": "archive_item_modified",
+      "display": "MODIFIED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "archive_item_flags": {
+      "name": "archive_item_flags",
+      "display": "FLAGS",
+      "type": "number_integer",
+      "required": true,
+      "default": 0,
+      "min": 0,
+      "max": 127
+    },
+    "archive_group_id": {
+      "name": "archive_group_id",
+      "type": "number_natural",
+      "required": true,
+      "unique": true,
+      "min": 0,
+      "max": 4294967296,
+      "required": true,
+      "unique": false,
+      "foreign": {
+        "model": "\\noxkiwi\\lightsystem\\Model\\ArchiveGroupModel",
+        "value": "archive_group_id",
+        "display": "{archive_group_name}"
+      }
+    },
+    "opc_item_id": {
+      "name": "opc_item_id",
+      "type": "number_natural",
+      "required": true,
+      "unique": false,
+      "min": 0,
+      "max": 4294967296,
+      "required": true,
+      "unique": false,
+      "foreign": {
+        "model": "\\noxkiwi\\lightsystem\\Model\\OpcItemModel",
+        "value": "opc_item_id",
+        "display": "{opc_item_address}"
+      }
+    }
+  },
+  "primary": [
+    "archive_item_id"
+  ],
+  "flags": {
+    "1": "active"
+  }
+}

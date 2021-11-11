@@ -1,0 +1,76 @@
+{
+  "fields": {
+    "opc_node_id": {
+      "name": "opc_node_id",
+      "display": "ID",
+      "default": 0,
+      "min": 0,
+      "max": 4294967296,
+      "type": "number_natural"
+    },
+    "opc_node_created": {
+      "name": "opc_node_created",
+      "display": "CREATED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "opc_node_modified": {
+      "name": "opc_node_modified",
+      "display": "MODIFIED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "opc_node_flags": {
+      "name": "opc_node_flags",
+      "display": "FLAGS",
+      "type": "number_integer",
+      "required": true,
+      "default": 0,
+      "min": 0,
+      "max": 127
+    },
+    "opc_node_prefix": {
+      "name": "opc_node_prefix",
+      "type": "text_opcaddress",
+      "required": true,
+      "unique": true
+    },
+    "opc_server_id": {
+      "name": "opc_server_id",
+      "display": "ID",
+      "default": 0,
+      "min": 0,
+      "max": 4294967296,
+      "type": "number_natural",
+      "foreign": {
+        "model": "\\noxkiwi\\lightsystem\\Model\\OpcServerModel",
+        "value": "opc_server_id",
+        "display": "{opc_server_name}"
+      }
+    },
+    "opc_template_id": {
+      "name": "opc_template_id",
+      "display": "ID",
+      "default": 0,
+      "min": 0,
+      "max": 4294967296,
+      "type": "number_natural",
+      "foreign": {
+        "model": "\\noxkiwi\\lightsystem\\Model\\OpcTemplateModel",
+        "value": "opc_template_id",
+        "display": "{opc_template_name}"
+      }
+    },
+    "opc_node_name": {
+      "name": "opc_node_name",
+      "type": "text"
+    }
+  },
+  "primary": [
+    "opc_node_id"
+  ],
+  "flags": {
+    "1": "active",
+    "2": "generate"
+  }
+}

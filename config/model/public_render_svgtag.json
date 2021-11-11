@@ -1,0 +1,83 @@
+{
+  "fields": {
+    "render_svgtag_id": {
+      "name": "render_svgtag_id",
+      "display": "ID",
+      "default": 0,
+      "min": 0,
+      "max": 4294967296,
+      "type": "number_natural"
+    },
+    "render_svgtag_created": {
+      "name": "render_svgtag_created",
+      "display": "CREATED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "render_svgtag_modified": {
+      "name": "render_svgtag_modified",
+      "display": "MODIFIED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "render_svgtag_flags": {
+      "name": "render_svgtag_flags",
+      "default": 0,
+      "min": 0,
+      "max": 128,
+      "type": "number_integer"
+    },
+    "render_svgtag_name": {
+      "name": "render_svgtag_name",
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "render_svgtag_svg": {
+      "name": "render_svgtag_svg",
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "render_svgtag_attributes_optional": {
+      "name": "render_svgtag_attributes_optional",
+      "type": "text",
+      "required": false,
+      "foreign": {
+        "model": "\\noxkiwi\\lightsystem\\Model\\AttributeModel",
+        "value": "render_attribute_id",
+        "display": "{render_attribute_name}",
+        "type" : "json"
+      }
+    },
+    "render_svgtag_attributes_required": {
+      "name": "render_svgtag_attributes_required",
+      "type": "text",
+      "default": 480,
+      "required": false,
+      "foreign": {
+        "model": "\\noxkiwi\\lightsystem\\Model\\AttributeModel",
+        "value": "render_attribute_id",
+        "display": "{render_attribute_name}",
+        "type" : "json"
+      }
+    },
+    "render_svgtag_attributes_animated": {
+      "name": "render_svgtag_attributes_animated",
+      "type": "text",
+      "required": false,
+      "foreign": {
+        "model": "\\noxkiwi\\lightsystem\\Model\\AttributeModel",
+        "value": "render_attribute_id",
+        "display": "{render_attribute_name}",
+        "type" : "json"
+      }
+    }
+  },
+  "primary": [
+    "render_svgtag_id"
+  ],
+  "flags": {
+    "1": "active"
+  }
+}

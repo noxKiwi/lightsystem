@@ -1,0 +1,178 @@
+{
+  "fields": {
+    "alarm_item_id": {
+      "name": "alarm_item_id",
+      "display": "ID",
+      "default": 0,
+      "min": 0,
+      "max": 4294967296,
+      "type": "number_natural"
+    },
+    "alarm_item_created": {
+      "name": "alarm_item_created",
+      "display": "CREATED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "alarm_item_modified": {
+      "name": "alarm_item_modified",
+      "display": "MODIFIED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "alarm_item_flags": {
+      "name": "alarm_item_flags",
+      "display": "FLAGS",
+      "type": "number_integer",
+      "required": true,
+      "default": 0,
+      "min": 0,
+      "max": 127
+    },
+    "alarm_item_name": {
+      "name": "alarm_item_name",
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "opc_item_id_read": {
+      "name": "opc_item_id_read",
+      "type": "number_natural",
+      "required": true,
+      "unique": false,
+      "min": 0,
+      "max": 4294967296,
+      "required": true,
+      "unique": false,
+      "foreign": {
+        "model": "\\noxkiwi\\lightsystem\\Model\\OpcItemModel",
+        "value": "opc_item_id",
+        "display": "{opc_item_address}"
+      }
+    },
+    "opc_item_id_alarm": {
+      "name": "opc_item_id_alarm",
+      "type": "number_natural",
+      "required": true,
+      "unique": false,
+      "min": 0,
+      "max": 4294967296,
+      "required": true,
+      "unique": false,
+      "foreign": {
+        "model": "\\noxkiwi\\lightsystem\\Model\\OpcItemModel",
+        "value": "opc_item_id",
+        "display": "{opc_item_address}"
+      }
+    },
+    "opc_item_id_came": {
+      "name": "opc_item_id_came",
+      "type": "number_natural",
+      "required": true,
+      "unique": false,
+      "min": 0,
+      "max": 4294967296,
+      "required": true,
+      "unique": false,
+      "foreign": {
+        "model": "\\noxkiwi\\lightsystem\\Model\\OpcItemModel",
+        "value": "opc_item_id",
+        "display": "{opc_item_address}"
+      }
+    },
+    "opc_item_id_gone": {
+      "name": "opc_item_id_gone",
+      "type": "number_natural",
+      "required": true,
+      "unique": false,
+      "min": 0,
+      "max": 4294967296,
+      "required": true,
+      "unique": false,
+      "foreign": {
+        "model": "\\noxkiwi\\lightsystem\\Model\\OpcItemModel",
+        "value": "opc_item_id",
+        "display": "{opc_item_address}"
+      }
+    },
+    "opc_item_id_ack": {
+      "name": "opc_item_id_ack",
+      "type": "number_natural",
+      "required": true,
+      "unique": false,
+      "min": 0,
+      "max": 4294967296,
+      "required": true,
+      "unique": false,
+      "foreign": {
+        "model": "\\noxkiwi\\lightsystem\\Model\\OpcItemModel",
+        "value": "opc_item_id",
+        "display": "{opc_item_address}"
+      }
+    },
+    "alarm_item_valence_on": {
+      "name": "alarm_item_valence_on",
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "alarm_item_valence_off": {
+      "name": "alarm_item_valence_off",
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "alarm_item_hysteresis_seconds": {
+      "name": "alarm_item_hysteresis_seconds",
+      "type": "number_natural",
+      "required": false,
+      "unique": false
+    },
+    "alarm_item_hysteresis_value": {
+      "name": "alarm_item_hysteresis_value",
+      "type": "number",
+      "required": false,
+      "unique": false
+    },
+    "alarm_item_comparison_type": {
+      "name": "alarm_item_comparison_type",
+      "type": "text",
+      "required": true,
+      "unique": false
+    },
+    "alarm_item_compare_value": {
+      "name": "alarm_item_compare_value",
+      "type": "text",
+      "required": true,
+      "unique": false
+    },
+    "alarm_group_id": {
+      "name": "alarm_group_id",
+      "type": "number_natural",
+      "required": true,
+      "unique": false,
+      "min": 0,
+      "max": 4294967296,
+      "required": true,
+      "unique": false,
+      "foreign": {
+        "model": "\\noxkiwi\\lightsystem\\Model\\AlarmGroupModel",
+        "value": "alarm_group_id",
+        "display": "{alarm_group_name}"
+      }
+    }
+  },
+  "required": [
+    "alarm_item_name"
+  ],
+  "primary": [
+    "alarm_item_id"
+  ],
+  "unique": [
+    "alarm_item_name"
+  ],
+  "flags": {
+    "1": "active",
+    "2": "silenced"
+  }
+}

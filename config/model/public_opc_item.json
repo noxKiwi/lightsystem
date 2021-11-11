@@ -1,0 +1,108 @@
+{
+  "fields": {
+    "opc_item_id": {
+      "name": "opc_item_id",
+      "display": "ID",
+      "default": 0,
+      "min": 0,
+      "max": 4294967296,
+      "type": "number_natural"
+    },
+    "opc_item_created": {
+      "name": "opc_item_created",
+      "display": "CREATED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "opc_item_modified": {
+      "name": "opc_item_modified",
+      "display": "MODIFIED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "opc_item_flags": {
+      "name": "opc_item_flags",
+      "display": "FLAGS",
+      "type": "number_integer",
+      "required": true,
+      "default": 0,
+      "min": 0,
+      "max": 127
+    },
+    "opc_item_address": {
+      "name": "opc_item_address",
+      "type": "string_opcaddress",
+      "required": true,
+      "unique": true
+    },
+    "opc_item_readable": {
+      "name": "opc_item_readable",
+      "type": "text",
+      "required": false,
+      "unique": true
+    },
+    "opc_item_datatype": {
+      "name": "opc_item_datatype",
+      "type": "text",
+      "min": 1,
+      "max": 64,
+      "required": true
+    },
+    "opc_item_lastvalue": {
+      "name": "opc_item_lastvalue",
+      "type": "text",
+      "required": false
+    },
+    "opc_server_id": {
+      "name": "opc_server_id",
+      "type": "number_natural",
+      "min": 0,
+      "max": 4294967296,
+      "required": true,
+      "unique": false,
+      "foreign": {
+        "model": "\\noxkiwi\\lightsystem\\Model\\OpcServerModel",
+        "value": "opc_server_id",
+        "display": "opcua://{opc_server_host}:{opc_server_port}/{opc_server_endpoint}"
+      }
+    },
+    "opc_node_id": {
+      "name": "opc_node_id",
+      "display": "ID",
+      "default": 0,
+      "min": 0,
+      "max": 4294967296,
+      "type": "number_natural",
+      "foreign": {
+        "model": "\\noxkiwi\\lightsystem\\Model\\OpcNodeModel",
+        "value": "opc_node_id",
+        "display": "{opc_node_name}"
+      }
+    }
+  },
+  "required": [
+    "opc_item_address",
+    "server_id"
+  ],
+  "primary": [
+    "opc_item_id"
+  ],
+  "unique": [
+    "opc_item_address"
+  ],
+  "datatype": {
+    "opc_item_id": "number_natural",
+    "opc_item_created": "text_timestamp",
+    "opc_item_modified": "text_timestamp",
+    "opc_item_flag": "number_natural",
+    "opc_item_address": "text",
+    "server_id": "number_natural",
+    "opc_item_datatype": "text"
+  },
+  "flags": {
+    "1": "active",
+    "2": "persistent",
+    "4": "writeable",
+    "8": "archive"
+  }
+}

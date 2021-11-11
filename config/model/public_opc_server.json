@@ -1,0 +1,82 @@
+{
+  "fields": {
+    "opc_server_id": {
+      "name": "opc_server_id",
+      "display": "ID",
+      "default": 0,
+      "min": 0,
+      "max": 4294967296,
+      "type": "number_natural"
+    },
+    "opc_server_created": {
+      "name": "opc_server_created",
+      "display": "CREATED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "opc_server_modified": {
+      "name": "opc_server_modified",
+      "display": "MODIFIED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "opc_server_flags": {
+      "name": "opc_server_flags",
+      "display": "FLAGS",
+      "type": "number_integer",
+      "required": true,
+      "default": 0,
+      "min": 0,
+      "max": 127
+    },
+    "opc_server_name": {
+      "name": "opc_server_name",
+      "type": "text",
+      "required": true,
+      "unique": false
+    },
+    "opc_server_host": {
+      "name": "opc_server_host",
+      "type": "text_domain",
+      "required": true,
+      "unique": false
+    },
+    "opc_server_port": {
+      "name": "opc_server_port",
+      "type": "number_port",
+      "required": true,
+      "unique": false
+    },
+    "opc_server_endpoint": {
+      "name": "opc_server_name",
+      "type": "text",
+      "required": true,
+      "unique": false
+    }
+  },
+  "required": [
+    "opc_server_address",
+    "opc_server_port",
+    "opc_server_id",
+    "opc_server_endpoint"
+  ],
+  "primary": [
+    "opc_server_id"
+  ],
+  "unique": [
+    "opc_server_address",
+    "opc_server_port"
+  ],
+  "datatype": {
+    "opc_server_id": "number_natural",
+    "opc_server_created": "text_timestamp",
+    "opc_server_modified": "text_timestamp",
+    "opc_server_flag": "number_natural",
+    "opc_server_address": "text",
+    "opc_server_port": "number_port",
+    "opc_server_endpoint": "text"
+  },
+  "flags": {
+    "1": "active"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "action": {
+    "element": [
+      {
+        "link": {
+          "view": "create"
+        },
+        "icon": "EDIT",
+        "target": "modal"
+      },
+      {
+        "link": {
+          "view": "delete"
+        },
+        "icon": "DELETE",
+        "target": "modal"
+      }
+    ],
+    "top": [
+      {
+        "link": {
+          "view": "create"
+        },
+        "icon": "PLUS",
+        "target": "modal"
+      }
+    ]
+  }
+}
+

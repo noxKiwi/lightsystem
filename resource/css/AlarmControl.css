@@ -1,0 +1,3 @@
+/** AlarmControl */
+.table-danger {background : var(--AlarmControlRowAlarm);}
+.alarmRow{cursor:pointer}

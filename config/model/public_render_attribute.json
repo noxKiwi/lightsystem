@@ -1,0 +1,52 @@
+{
+  "fields": {
+    "render_attribute_id": {
+      "name": "render_attribute_id",
+      "display": "ID",
+      "default": 0,
+      "min": 0,
+      "max": 4294967296,
+      "type": "number_natural"
+    },
+    "render_attribute_created": {
+      "name": "render_attribute_created",
+      "display": "CREATED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "render_attribute_modified": {
+      "name": "render_attribute_modified",
+      "display": "MODIFIED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "render_attribute_flags": {
+      "name": "render_attribute_flags",
+      "default": 0,
+      "min": 0,
+      "max": 128,
+      "type": "number_integer"
+    },
+    "render_attribute_name": {
+      "name": "render_attribute_name",
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "render_attribute_datatype": {
+      "name": "render_attribute_datatype",
+      "type": "text",
+      "required": true
+    },
+    "render_attribute_default": {
+      "name": "render_attribute_default",
+      "type": "text"
+    }
+  },
+  "primary": [
+    "render_attribute_id"
+  ],
+  "flags": {
+    "1": "active"
+  }
+}

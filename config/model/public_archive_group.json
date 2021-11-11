@@ -1,0 +1,64 @@
+{
+  "fields": {
+    "archive_group_id": {
+      "name": "archive_group_id",
+      "display": "ID",
+      "default": 0,
+      "min": 0,
+      "max": 4294967296,
+      "type": "number_natural"
+    },
+    "archive_group_created": {
+      "name": "archive_group_created",
+      "display": "CREATED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "archive_group_modified": {
+      "name": "archive_group_modified",
+      "display": "MODIFIED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "archive_group_flags": {
+      "name": "archive_group_flags",
+      "display": "FLAGS",
+      "type": "number_integer",
+      "required": true,
+      "default": 0,
+      "min": 0,
+      "max": 127
+    },
+    "archive_group_name": {
+      "name": "archive_group_name",
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "archive_group_type": {
+      "name": "archive_group_type",
+      "type": "text_domain",
+      "required": true,
+      "unique": false
+    },
+    "archive_group_table": {
+      "name": "archive_group_table",
+      "type": "number_port",
+      "required": true,
+      "unique": true
+    },
+    "archive_group_interval": {
+      "name": "archive_group_interval",
+      "type": "text",
+      "required": true,
+      "unique": false
+    }
+  },
+  "primary": [
+    "archive_group_id"
+  ],
+  "flags": {
+    "1": "active",
+    "2": "readable"
+  }
+}

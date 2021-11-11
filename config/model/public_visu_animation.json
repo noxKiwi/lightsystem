@@ -1,0 +1,56 @@
+{
+  "fields": {
+    "visu_animation_id": {
+      "name": "visu_animation_id",
+      "display": "ID",
+      "default": 0,
+      "min": 0,
+      "max": 4294967296,
+      "type": "number_natural"
+    },
+    "visu_animation_created": {
+      "name": "visu_animation_created",
+      "display": "CREATED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "visu_animation_modified": {
+      "name": "visu_animation_modified",
+      "display": "MODIFIED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "visu_animation_flags": {
+      "name": "visu_animation_flags",
+      "display": "FLAGS",
+      "type": "number_integer",
+      "required": true,
+      "default": 0,
+      "min": 0,
+      "max": 127
+    },
+    "visu_animation_data": {
+      "name": "visu_animation_data",
+      "type": "structure",
+      "required": true,
+      "unique": false
+    },
+    "opc_item_id": {
+      "name": "opc_item_id",
+      "type": "number_natural",
+      "required": true,
+      "unique": true,
+      "foreign": {
+        "model": "\\noxkiwi\\lightsystem\\Model\\OpcItemModel",
+        "value": "opc_item_id",
+        "display": "{opc_item_address}"
+      }
+    }
+  },
+  "primary": [
+    "visu_animation_id"
+  ],
+  "flags": {
+    "1": "active"
+  }
+}
