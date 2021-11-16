@@ -2,7 +2,7 @@
 
 /**
  * I am the main class for the rslightsystem
- * @author Jan Nox <jan@nox.kiwi>
+ * @author Jan Nox <jan.nox@pm.me>
  * @requires FrontendManager
  * @requires ItemManager
  * @requires Log

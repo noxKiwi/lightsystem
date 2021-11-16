@@ -13,7 +13,7 @@ use function get_class;
  * I am an example Message object.
  *
  * @package      noxkiwi\lightsystem\Consumer
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2020 noxkiwi
  * @version      1.0.0

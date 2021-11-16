@@ -2,7 +2,7 @@
 
 /**
  * I am a helper for forms .
- * @author Jan Nox <jan@nox.kiwi>
+ * @author Jan Nox <jan.nox@pm.me>
  */
 export default class Form
 {

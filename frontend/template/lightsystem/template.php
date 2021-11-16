@@ -16,6 +16,8 @@ use noxkiwi\core\Environment;use const E_ERROR;
 
 $crudLinks = '';
 $models = [
+        'Slave',
+        'Master',
         'Flow',
         'Account',
         'AlarmGroup',

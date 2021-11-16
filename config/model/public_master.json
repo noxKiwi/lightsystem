@@ -1,0 +1,56 @@
+{
+  "fields": {
+    "master_id": {
+      "name": "master_id",
+      "display": "ID",
+      "default": 0,
+      "min": 0,
+      "max": 4294967296,
+      "type": "number_natural"
+    },
+    "master_created": {
+      "name": "master_created",
+      "display": "CREATED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "master_modified": {
+      "name": "master_modified",
+      "display": "MODIFIED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "master_flags": {
+      "name": "master_flags",
+      "default": 0,
+      "min": 0,
+      "max": 128,
+      "type": "number_integer"
+    },
+    "master_name": {
+      "name": "master_text",
+      "type": "text",
+      "required": true,
+      "unique": false
+    },
+    "master_host": {
+      "name": "master_host",
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "master_wait": {
+      "name": "master_wait",
+      "default": 10,
+      "min": 5,
+      "max": 60,
+      "type": "number_integer"
+    }
+  },
+  "primary": [
+    "master_id"
+  ],
+  "flags": {
+    "1": "active"
+  }
+}

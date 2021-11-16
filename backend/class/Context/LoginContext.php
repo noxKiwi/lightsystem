@@ -21,7 +21,7 @@ use const E_ERROR;
  * @package      noxkiwi\lightsystem
  * @uses         \noxkiwi\lightsystem\Context\LoginContext::viewLogin()
  * @uses         \noxkiwi\lightsystem\Context\LoginContext::viewLogout()
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2018 - 2021 noxkiwi
  * @version      1.0.0

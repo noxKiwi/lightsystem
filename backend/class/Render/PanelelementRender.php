@@ -12,7 +12,7 @@ use noxkiwi\lightsystem\Render;
  * @see          \noxkiwi\lightsystem\Render\PanelelementRender
  * @see          \noxkiwi\lightsystem\Render\SvgtagRender
  *  - elements
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2018 - 2021 noxkiwi
  * @version      1.1.1

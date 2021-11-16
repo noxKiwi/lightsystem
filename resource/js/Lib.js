@@ -8,7 +8,7 @@ String.prototype.replaceAll = function (search, replacement) {
 /**
  * I will return the value that was passed in the url with the given sParam.
  * If not defined, I will return the given defaultValue.
- * @author Jan Nox <jan@nox.kiwi>
+ * @author Jan Nox <jan.nox@pm.me>
  * @param name
  * @param defaultValue
  * @returns {*}

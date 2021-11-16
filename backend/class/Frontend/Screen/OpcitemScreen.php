@@ -11,7 +11,7 @@ use noxkiwi\lightsystem\Frontend\Screen;
  * I am the helper for tag normalization.
  *
  * @package      noxkiwi\lightsystem\Frontend\Screen
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2019 noxkiwi
  * @version      1.0.0

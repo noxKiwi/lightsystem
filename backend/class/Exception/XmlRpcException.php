@@ -7,7 +7,7 @@ use noxkiwi\core\Exception;
  * I am the App of the rslightsystem.
  *
  * @package      noxkiwi\lightsystem\Exception
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2019 noxkiwi
  * @version      1.0.0

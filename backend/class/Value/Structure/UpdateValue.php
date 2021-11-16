@@ -10,7 +10,7 @@ use noxkiwi\value\Value\StructureValue;
  *
  * @package      noxkiwi\lightsystem
  * @uses         \noxkiwi\lightsystem\Validator\Structure\UpdateValidator
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  *
  * @copyright    2019 - 2021 noxkiwi

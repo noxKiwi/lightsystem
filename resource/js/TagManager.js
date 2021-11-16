@@ -2,7 +2,7 @@
 
 /**
  * I will handle the tag and variable system on the client-side.
- * @author Jan Nox <jan@nox.kiwi>
+ * @author Jan Nox <jan.nox@pm.me>
  * @requires FrontendManager
  */
 class TagManager

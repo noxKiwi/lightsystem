@@ -1,0 +1,74 @@
+{
+  "fields": {
+    "slave_id": {
+      "name": "slave_id",
+      "display": "ID",
+      "default": 0,
+      "min": 0,
+      "max": 4294967296,
+      "type": "number_natural"
+    },
+    "slave_created": {
+      "name": "slave_created",
+      "display": "CREATED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "slave_modified": {
+      "name": "slave_modified",
+      "display": "MODIFIED",
+      "type": "string_timestamp",
+      "default": "NOW"
+    },
+    "slave_flags": {
+      "name": "slave_flags",
+      "default": 0,
+      "min": 0,
+      "max": 128,
+      "type": "number_integer"
+    },
+    "slave_name": {
+      "name": "slave_text",
+      "type": "text",
+      "required": true,
+      "unique": false
+    },
+    "slave_directory": {
+      "name": "slave_directory",
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "slave_command": {
+      "name": "slave_command",
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "slave_order": {
+      "name": "slave_order",
+      "default": 10,
+      "min": 5,
+      "max": 60,
+      "type": "number_integer"
+    },
+    "master_id": {
+      "name": "master_id",
+      "default": 10,
+      "min": 5,
+      "max": 60,
+      "type": "number_integer",
+      "foreign": {
+        "model": "\\noxkiwi\\lightsystem\\Model\\MasterModel",
+        "value": "master_id",
+        "display": "{master_name}"
+      }
+    }
+  },
+  "primary": [
+    "slave_id"
+  ],
+  "flags": {
+    "1": "active"
+  }
+}
