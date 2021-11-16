@@ -8,7 +8,7 @@ use noxkiwi\validator\Validator\TextValidator;
  * I am the validator for timeswitch control strings.
  *
  * @package      noxkiwi\lightsystem
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2018 noxkiwi
  * @version      1.0.0

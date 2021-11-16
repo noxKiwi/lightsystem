@@ -5,7 +5,7 @@ namespace noxkiwi\lightsystem\Api\Telegram;
  * I am the AbstractClient for all RPCs that will be created for lightsystem project.
  *
  * @package      noxkiwi\lightsystem\Api\lightsystem
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2019 noxkiwi
  * @version      1.0.0

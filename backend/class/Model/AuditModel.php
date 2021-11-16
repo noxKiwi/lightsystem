@@ -12,7 +12,7 @@ use noxkiwi\dataabstraction\Model;
  * I am the storage for all changes made in NLFW.
  *
  * @package      noxkiwi\lightsystem\Model
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2021 noxkiwi
  * @version      1.0.0

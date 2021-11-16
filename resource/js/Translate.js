@@ -44,7 +44,7 @@ let language = "enUS";
 
 /**
  * I am the client-side translation class.
- * @author Jan Nox <jan@nox.kiwi>
+ * @author Jan Nox <jan.nox@pm.me>
  */
 class Translate
 {

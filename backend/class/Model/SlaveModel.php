@@ -1,11 +1,10 @@
 <?php declare(strict_types = 1);
 namespace noxkiwi\lightsystem\Model;
 
-
 use noxkiwi\dataabstraction\Model;
 
 /**
- * I manage the panels and their prefixes
+ * I am the storage for slave servers.
  *
  * @package      noxkiwi\lightsystem
  * @author       Jan Nox <jan.nox@pm.me>
@@ -14,8 +13,8 @@ use noxkiwi\dataabstraction\Model;
  * @version      1.0.0
  * @link         https://nox.kiwi/
  */
-final class RenderPanelPrefixModel extends Model
+final class SlaveModel extends Model
 {
-    public const TABLE        = 'render_panel_prefix';
+    public const    TABLE        = 'slave';
     public const    FLAG_ENABLED = 1;
 }
