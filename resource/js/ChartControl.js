@@ -126,7 +126,7 @@ class ChartControl extends TableControl
                 },
                 series : []
             });
-            self.setGroup("Temperature", 7);
+            self.setGroup("Temperature", 3);
         });
     }
 
