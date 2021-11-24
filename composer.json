@@ -21,17 +21,17 @@
     "ext-sockets": "*",
     "ext-xmlrpc": "*",
     "ext-curl": "*",
-    "noxkiwi/core": "*",
-    "noxkiwi/dataabstraction": "*",
-    "noxkiwi/database": "*",
-    "noxkiwi/mailer": "*",
-    "noxkiwi/observing": "*",
-    "noxkiwi/singleton": "*",
-    "noxkiwi/log": "*",
-    "noxkiwi/cache": "*",
-    "noxkiwi/crud": "*",
-    "noxkiwi/queue": "*",
-    "noxkiwi/translator": "*"
+    "noxkiwi/core": "dev-master",
+    "noxkiwi/dataabstraction": "dev-master",
+    "noxkiwi/database": "dev-master",
+    "noxkiwi/mailer": "dev-master",
+    "noxkiwi/observing": "dev-master",
+    "noxkiwi/singleton": "dev-master",
+    "noxkiwi/log": "dev-master",
+    "noxkiwi/cache": "dev-master",
+    "noxkiwi/crud": "dev-master",
+    "noxkiwi/queue": "dev-master",
+    "noxkiwi/translator": "dev-master"
   },
   "autoload": {
     "psr-4": {

@@ -102,6 +102,10 @@ HTML;
     <script type="text/javascript" src="/asset/lib/selectize/examples/js/jqueryui.js"></script>
     <script type="text/javascript" src="/asset/lib/selectize/dist/js/standalone/selectize.js"></script>
     <script type="text/javascript" src="/asset/lib/selectize/examples/js/index.js"></script>
+
+    <!-- Buzz.js -->
+    <script type="text/javascript" src="/asset/lib/buzz/buzz.min.js"></script>
+
     <!-- JQX -->
     <link rel="stylesheet" type="text/css" media="screen" href="/asset/lib/jqwidgets/jqwidgets/styles/jqx.base.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="/asset/lib/jqwidgets/jqwidgets/styles/jqx.light.css"/>
