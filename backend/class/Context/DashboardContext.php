@@ -142,7 +142,7 @@ final class DashboardContext extends Context
                 'debugmode'      => (int)$this->request->get('debugmode', 0) === 1
             ],
             'defaults'      => [
-                'firstpanel'     => (int)$this->request->get('firstpanel', 1003),
+                'firstpanel'     => (int)$this->request->get('firstpanel', 1001),
                 'firstpaneldata' => $this->request->get(
                     'firstpaneldata',
                     [
