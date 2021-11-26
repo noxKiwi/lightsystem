@@ -4,6 +4,10 @@ namespace noxkiwi\lightsystem\Frontend;
 use noxkiwi\core\Frontend\Renderable\HTML\Div;
 use noxkiwi\core\Traits\TranslationTrait;
 use ReflectionClass;
+use function array_key_exists;
+use function array_keys;
+use function count;
+use function get_class;
 
 /**
  * I am the blank control class.
@@ -279,13 +283,13 @@ HTML;
         return $this->title;
     }
 
-	/**
-	 * I will solely set the title.
-	 *
-	 * @param string|null $title
-	 *
-	 * @return \noxkiwi\lightsystem\Frontend\Screen
-	 */
+    /**
+     * I will solely set the title.
+     *
+     * @param string|null $title
+     *
+     * @return \noxkiwi\lightsystem\Frontend\Screen
+     */
     final public function setTitle(?string $title): Screen
     {
         if (empty($title)) {

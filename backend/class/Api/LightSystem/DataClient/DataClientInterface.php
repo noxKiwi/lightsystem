@@ -41,6 +41,6 @@ interface DataClientInterface extends AbstractClientInterface
      * @return array
      */
     public function getNodes(array $params): array;
-    
+
     public function getTable(array $params): array;
 }

@@ -5,6 +5,7 @@ use noxkiwi\dataabstraction\Entry;
 use noxkiwi\lightsystem\Exception\RenderException;
 use noxkiwi\lightsystem\Render;
 use function array_key_exists;
+use function str_replace;
 use const E_WARNING;
 
 /**

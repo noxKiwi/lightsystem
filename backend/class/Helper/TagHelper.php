@@ -2,6 +2,7 @@
 namespace noxkiwi\lightsystem\Helper;
 
 use function count;
+use function explode;
 
 /**
  * I am the helper for tag normalization.

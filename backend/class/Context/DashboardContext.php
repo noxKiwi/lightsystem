@@ -9,6 +9,10 @@ use noxkiwi\core\Helper\FrontendHelper;
 use noxkiwi\core\Helper\JsonHelper;
 use noxkiwi\lightsystem\Frontend\Screen\OpcitemScreen;
 use noxkiwi\database\Database;
+use function explode;
+use function file_put_contents;
+use function implode;
+use function var_dump;
 
 /**
  * I am

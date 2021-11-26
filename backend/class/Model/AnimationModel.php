@@ -6,6 +6,7 @@ use noxkiwi\core\Exception\InvalidArgumentException;
 use noxkiwi\dataabstraction\Model;
 use noxkiwi\lightsystem\Value\Structure\AnimationValue;
 use noxkiwi\lightsystem\Value\Structure\UpdateValue;
+use function strpos;
 
 /**
  * I am the storage for different failure classes

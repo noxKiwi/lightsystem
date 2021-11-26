@@ -7,8 +7,11 @@ use noxkiwi\lightsystem\Value\Structure\UpdateValue;
 use noxkiwi\log\Traits\LogTrait;
 use noxkiwi\singleton\Singleton;
 use function array_key_exists;
+use function compact;
 use function in_array;
 use function session_id;
+use function str_replace;
+
 function updatelog(string $text): void
 {
 }

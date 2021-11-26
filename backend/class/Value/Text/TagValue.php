@@ -2,6 +2,7 @@
 namespace noxkiwi\lightsystem\Value\Text;
 
 use JetBrains\PhpStorm\Immutable;
+use noxkiwi\value\Value;
 use noxkiwi\value\Value\TextValue;
 
 /**
@@ -14,6 +15,6 @@ use noxkiwi\value\Value\TextValue;
  * @version      1.0.1
  * @link         https://nox.kiwi/
  */
-#[Immutable] final class TagValue extends TextValue
+#[Immutable] final class TagValue extends Value
 {
 }

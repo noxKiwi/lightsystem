@@ -2,6 +2,7 @@
 namespace noxkiwi\lightsystem\Helper;
 
 use noxkiwi\lightsystem\Frontend\Number;
+use function number_format;
 
 /**
  * I am the helper for tag normalization.

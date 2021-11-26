@@ -2,6 +2,12 @@
 namespace noxkiwi\lightsystem\Api\Telegram;
 
 use noxkiwi\core\Traits\ErrorstackTrait;
+use function curl_exec;
+use function curl_init;
+use function curl_setopt;
+use const CURLOPT_POSTFIELDS;
+use const CURLOPT_RETURNTRANSFER;
+use const CURLOPT_URL;
 
 /**
  * I am the base sender for all interactions with Telegram bot api.

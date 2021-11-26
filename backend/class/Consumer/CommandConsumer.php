@@ -6,6 +6,7 @@ use noxkiwi\lightsystem\Api\LightSystem\BaseClient;
 use noxkiwi\lightsystem\Message\CommandMessage;
 use noxkiwi\queue\Consumer\RabbitmqConsumer;
 use noxkiwi\queue\Message;
+use function print_r;
 use const E_USER_NOTICE;
 use function get_class;
 
