@@ -29,14 +29,14 @@ final class ServerBox extends Box
         $this->setContent($content);
     }
 
-	/**
-	 * @param array|null $options
-	 *
-	 * @throws \ReflectionException
-	 * @throws \noxkiwi\dataabstraction\Exception\EntryInconsistentException
-	 * @throws \noxkiwi\dataabstraction\Exception\EntryMissingException
-	 * @throws \noxkiwi\dataabstraction\Exception\ModelException
-	 */
+    /**
+     * @param array|null $options
+     *
+     * @throws \ReflectionException
+     * @throws \noxkiwi\dataabstraction\Exception\EntryInconsistentException
+     * @throws \noxkiwi\dataabstraction\Exception\EntryMissingException
+     * @throws \noxkiwi\dataabstraction\Exception\ModelException
+     */
     protected function setOptions(?array $options): void
     {
         parent::setOptions($options);

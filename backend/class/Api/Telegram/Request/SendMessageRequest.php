@@ -5,6 +5,7 @@ use noxkiwi\core\Session;
 use noxkiwi\core\Traits\LanguageImprovementTrait;
 use noxkiwi\lightsystem\Api\Telegram\Request;
 use noxkiwi\core\Helper\WebHelper;
+use function date;
 
 /**
  * I am the AbstractClient for all RPCs that will be created for lightsystem project.

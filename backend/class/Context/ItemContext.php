@@ -17,6 +17,7 @@ use noxkiwi\mailer\Mailer;
 use function compact;
 use function is_array;
 use function var_dump;
+use const E_ERROR;
 
 /**
  * I am
