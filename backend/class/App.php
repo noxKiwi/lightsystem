@@ -1,6 +1,7 @@
 <?php declare(strict_types = 1);
 namespace noxkiwi\lightsystem;
 
+use JetBrains\PhpStorm\NoReturn;
 use noxkiwi\core\Environment;
 use noxkiwi\core\Gate\CidrGate;
 use noxkiwi\core\Gate\HostnameGate;
@@ -42,7 +43,7 @@ final class App extends \noxkiwi\core\App
     /**
      * @inheritDoc
      */
-    public function run(): void
+    #[NoReturn] public function run(): void
     {
         if (! $this->checkGates()) {
             echo FrontendHelper::parseFile(Path::getInheritedPath(Path::PAGE_403));
