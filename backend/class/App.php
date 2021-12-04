@@ -61,6 +61,7 @@ final class App extends \noxkiwi\core\App
      */
     private function checkGates(): bool
     {
+        parent::checkMaintenance();
         $env = Environment::getInstance();
         // Prepare CIDR
         $cidr = CidrGate::getInstance();
