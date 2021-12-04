@@ -45,7 +45,7 @@ final class PanelRender extends Render
         $element    = $this->getElement();
         $config     = $this->getConfig();
         $cache      = Cache::getInstance();
-        $cachedInfo = $cache->get('panela', (string)$element->render_panel_id);
+        $cachedInfo = $cache->get('panel', (string)$element->render_panel_id);
         if (is_string($cachedInfo)) {
             return $cachedInfo;
         }
