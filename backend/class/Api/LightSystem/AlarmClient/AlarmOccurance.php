@@ -54,11 +54,11 @@ class AlarmOccurance
                 $return->ackdate = new DateTime($data['ack']);
                 $return->ack     = (int)($data['ack'] ?? 0);
             }
-            if (! empty($data['came'])) {
-                $return->came = new DateTime($data['came']);
+            if (! empty($data['engaged'])) {
+                $return->came = new DateTime($data['engaged']);
             }
-            if (! empty($data['gone'])) {
-                $return->gone = new DateTime($data['gone']);
+            if (! empty($data['disengaged'])) {
+          #      $return->gone = new DateTime($data['disengaged']);
             }
         } catch (Exception $exception) {
             ErrorHandler::handleException($exception, E_USER_NOTICE);
