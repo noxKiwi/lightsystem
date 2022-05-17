@@ -54,8 +54,8 @@ class AlarmOccurance
                 $return->ackdate = new DateTime($data['ack']);
                 $return->ack     = (int)($data['ack'] ?? 0);
             }
-            if (! empty($data['engaged']) && is_string($data['engaged'])) {
                 $return->came = new DateTime($data['engaged']);
+            if (! empty($data['engaged']) && is_string($data['engaged'])) {
             }
             if (! empty($data['disengaged']) && is_string($data['disengaged'])) {
                 $return->gone = new DateTime($data['disengaged']);
