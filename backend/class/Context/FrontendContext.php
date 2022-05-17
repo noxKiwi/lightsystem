@@ -6,7 +6,7 @@ use noxkiwi\lightsystem\Model\OpcItemModel;
 use noxkiwi\lightsystem\Updatemanager;
 use noxkiwi\lightsystem\Value\Structure\AnimationValue;
 use noxkiwi\lightsystem\Value\Structure\UpdateValue;
-use function var_dump;
+use noxkiwi\lightsystem\Variablemanager;
 
 /**
  * I am the context that manages front-end updates.
@@ -43,12 +43,15 @@ final class FrontendContext extends CallbackContext
      */
     protected function viewUpdate(): void
     {
-        $updates = $this->updateManager->getUpdates();
-        foreach ($updates as $update) {
-            if (! $update instanceof UpdateValue) {
-                continue;
-            }
+        $v = Variablemanager::getInstance();
+        $variables =$v->getVariables();
+        foreach ($variables as $tag => $value) {
+
+            $update = new UpdateValue(
+                compact('tag', 'value')
+            );
             $animations = AnimationModel::getAnimations($update);
+            $this->response->set("tag>$tag", $value);
             foreach ($animations as $animation) {
                 $this->addAnimation($animation);
             }
@@ -62,7 +65,10 @@ final class FrontendContext extends CallbackContext
     {
         $tag       = $animationValue->get()['tag'];
         $attribute = $animationValue->get()['attribute'];
-        $value     = $animationValue->get()['value'];
+        $value     = $animationValue->get()['value'] ?? null;
+        if(is_array($value)) {
+            $value     = json_encode($value);
+        }
         $this->addCallback("Animate.tag('$tag', '$attribute', '$value');");
     }
 }
