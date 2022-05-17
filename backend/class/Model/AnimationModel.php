@@ -20,7 +20,7 @@ use function strpos;
  */
 final class AnimationModel extends Model
 {
-    public const    TABLE         = 'visu_animation';
+    public const    TABLE         = 'render_animation';
     public const    COMPARE_EQ    = 'EQ';
     public const    COMPARE_GT    = 'GT';
     public const    COMPARE_GTE   = 'GTE';
