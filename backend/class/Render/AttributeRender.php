@@ -1,6 +1,7 @@
 <?php declare(strict_types = 1);
 namespace noxkiwi\lightsystem\Render;
 
+use noxkiwi\core\Helper\StringHelper;
 use noxkiwi\dataabstraction\Entry;
 use noxkiwi\lightsystem\Exception\RenderException;
 use noxkiwi\lightsystem\Render;
