@@ -274,22 +274,22 @@ final class DataClient extends AbstractClient implements DataClientInterface
         }
         foreach ($request->opcItems as $opcItem) {
             $fields .= <<<SQL
-, ROUND({$request->compression}(`$group`.`$opcItem`), 2)                          AS `$opcItem`
+, ROUND({$request->compression}(`{$group->archive_group_table}`.`$opcItem`), 2)                          AS `$opcItem`
 SQL;
         }
         $sql = <<<SQL
 SELECT
-    DATE_FORMAT( `$group`.`{$group}_created`, '{$request->sqlFormat}') AS `date` $fields
+    DATE_FORMAT( `{$group->archive_group_table}`.`{$group->archive_group_table}_created`, '{$request->sqlFormat}') AS `date` $fields
 FROM
-    `$group`
+    `{$group->archive_group_table}`
 WHERE
-    `$group`.`{$group}_created` BETWEEN '{$request->begin->format($request->phpFormat)}' AND '{$request->end->format($request->phpFormat)}'
+    `{$group->archive_group_table}`.`{$group->archive_group_table}_created` BETWEEN '{$request->begin->format($request->phpFormat)}' AND '{$request->end->format($request->phpFormat)}'
 GROUP BY
-    DATE_FORMAT( `$group`.`{$group}_created`, '{$request->sqlFormat}')
+    DATE_FORMAT( `{$group->archive_group_table}`.`{$group->archive_group_table}_created`, '{$request->sqlFormat}')
 SQL;
         $db  = Database::getInstance();
         $db->read($sql);
-
+die($sql);
         return $db->getResult();
     }
 
