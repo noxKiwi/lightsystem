@@ -8,15 +8,10 @@ use noxkiwi\core\Environment;
 use noxkiwi\core\Helper\LinkHelper;
 use noxkiwi\core\Helper\WebHelper;
 use noxkiwi\core\Session;
-use noxkiwi\lightsystem\Api\Telegram\Request\SendMessageRequest;
-use noxkiwi\lightsystem\Api\Telegram\Telegram;
 use noxkiwi\log\LogLevel;
 use function defined;
-use function end;
-use function explode;
 use function file_get_contents;
 use function in_array;
-use const E_ERROR;
 
 /**
  * I am

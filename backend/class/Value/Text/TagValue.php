@@ -3,7 +3,6 @@ namespace noxkiwi\lightsystem\Value\Text;
 
 use JetBrains\PhpStorm\Immutable;
 use noxkiwi\value\Value;
-use noxkiwi\value\Value\TextValue;
 
 /**
  * I am the core rendering class for process image output.

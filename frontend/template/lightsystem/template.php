@@ -3,7 +3,6 @@
 namespace noxkiwi\lightsystem;
 
 use noxkiwi\core\Constants\Mvc;
-use noxkiwi\core\Exception\InvalidArgumentException;
 use noxkiwi\frontend\Element\Icon;
 use noxkiwi\core\Helper\FrontendHelper;
 use noxkiwi\core\Helper\JsonHelper;
@@ -12,7 +11,7 @@ use noxkiwi\core\Response;
 use noxkiwi\lightsystem\Model\RenderPanelModel;
 use noxkiwi\lightsystem\Model\RenderPanelPrefixModel;
 use noxkiwi\translator\Translator;
-use noxkiwi\core\Environment;use const E_ERROR;
+use noxkiwi\core\Environment;
 
 $crudLinks = '';
 $models = [

@@ -3,7 +3,6 @@ namespace noxkiwi\lightsystem\Value\Structure;
 
 use JetBrains\PhpStorm\Immutable;
 use noxkiwi\value\Value;
-use noxkiwi\value\Value\StructureValue;
 
 /**
  * I am an animation for the front-end.

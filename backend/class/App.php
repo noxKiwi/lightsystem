@@ -15,7 +15,6 @@ use noxkiwi\lightsystem\Frontend\Control\DataMonitorControl;
 use noxkiwi\lightsystem\Frontend\Control\ChartControl;
 use noxkiwi\lightsystem\Frontend\Control\EventMonitorControl;
 use noxkiwi\lightsystem\Frontend\Control\TimeSwitchControl;
-use function var_dump;
 
 /**
  * I am the App of the lightsystem.
