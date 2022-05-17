@@ -5,7 +5,6 @@ use noxkiwi\core\Exception\ConfigurationException;
 use noxkiwi\core\Exception\InvalidArgumentException;
 use noxkiwi\lightsystem\Model\OpcItemModel;
 use noxkiwi\lightsystem\Model\TimeSwitchModel;
-use const E_ERROR;
 use const E_WARNING;
 
 /**
@@ -54,12 +53,13 @@ final class TimeswitchContext extends CallbackContext
         if (empty($writeItem)) {
             throw new InvalidArgumentException('The desired address was not found.', E_WARNING);
         }
-        $timeSwitchData = $this->timeSwitchModel->addFilter('opc_item_write', $writeItem['opc_item_id'])->search()->getResult();
+        $this->timeSwitchModel->addFilter('opc_item_write', $writeItem['opc_item_id']);
+        $timeSwitchData = $this->timeSwitchModel->search();
         if (empty($timeSwitchData)) {
             throw new InvalidArgumentException('The desired address is not controlled by this piece of software.', E_WARNING);
         }
         $timeSwitchData = $timeSwitchData[0];
-        $autoItem       = $this->opcItemModel->loadEntry($timeSwitchData['opc_item_write']);
+        $autoItem       = $this->opcItemModel->loadEntry($timeSwitchData['opc_item_auto']);
         if (empty($autoItem)) {
             throw new ConfigurationException('Time Switch was found, but the auto-item is invalid.', E_WARNING);
         }
@@ -76,12 +76,12 @@ final class TimeswitchContext extends CallbackContext
      */
     protected function viewSet(): void
     {
-        if ($this->request->isDefined('timeswitch_id')) {
+        if ($this->request->exists('timeswitch_id')) {
             $entry = $this->timeSwitchModel->loadEntry(
                 $this->request->get('timeswitch_id')
             );
         } else {
-            $entry = $this->timeSwitchModel->getEmptyEntry();
+            $entry = $this->timeSwitchModel->getEntry();
         }
         $entry->timeswitch_monday    = $this->request->get('monday');
         $entry->timeswitch_tuesday   = $this->request->get('tuesday');
