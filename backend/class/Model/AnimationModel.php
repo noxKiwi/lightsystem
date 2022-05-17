@@ -155,7 +155,7 @@ final class AnimationModel extends Model
     {
         switch ($comparator) {
             case self::COMPARE_EQ:
-                return $value === $compValue;
+                return $value == $compValue;
             case self::COMPARE_GT:
                 return $value > $compValue;
             case self::COMPARE_GTE:
@@ -165,7 +165,7 @@ final class AnimationModel extends Model
             case self::COMPARE_LT:
                 return $value < $compValue;
             case self::COMPARE_NEQ:
-                return $value !== $compValue;
+                return $value != $compValue;
             default:
                 return false;
         }
