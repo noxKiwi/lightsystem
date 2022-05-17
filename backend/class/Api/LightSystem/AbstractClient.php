@@ -7,6 +7,7 @@ use noxkiwi\core\Helper\WebHelper;
 use noxkiwi\lightsystem\Api\LightSystem\AbstractClient\AbstractClientInterface;
 use noxkiwi\lightsystem\Exception\XmlRpcException;
 use noxkiwi\singleton\Singleton;
+use noxkiwi\translator\Traits\TranslatorTrait;
 use function curl_close;
 use function curl_errno;
 use function curl_exec;
@@ -36,6 +37,7 @@ use const E_USER_NOTICE;
  */
 abstract class AbstractClient extends Singleton implements AbstractClientInterface
 {
+    use TranslatorTrait;
     protected const USE_DRIVER                 = true;
     protected const EXCEPTION_INVALID_RESPONSE = 'invalidResponse';
     /** @var string I am the transport protocol that will be used for the XMLRpc Requests. */
