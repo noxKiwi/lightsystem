@@ -12,7 +12,7 @@ class TimeSwitchControl extends Control
         };
         Translate.addTranslations("deDE", {});
         Translate.addTranslations("enUS", {});
-        this.show('NOX.KIWI.JG.WHG.FLOOR002.LIVING.RELAY.SOFA.BC.B_VALUE');
+        this.show('HOME.RELAY07.SETPOINT');
     }
 
     static getInstance() {
@@ -173,7 +173,7 @@ class TimeSwitchControl extends Control
           <button class="` + this.btnSize + ` btn-secondary" onClick="TsRuntime.drawMode='on';" type="button"><i class="fa fa-check"></i></button>
           <button class="` + this.btnSize + ` btn-secondary" onClick="TsRuntime.drawMode='off';" type="button"><i class="fa fa-times"></i></button>
           <button class="` + this.btnSize + ` btn-secondary" onClick="TsRuntime.drawMode='s';" type="button"><i class="fa fa-random"></i></button>
-          <button class="` + this.btnSize + ` btn-secondary" onClick="ItemManager.write('` + this.tsEntry.write_address + `', 'VOID');" type="button" style="color:lime;"><i class="fa fa-power-off"></i></button>
+          <button class="` + this.btnSize + ` btn-secondary" onClick="ItemManager.write('` + this.tsEntry.auto_address + `', 'VOID');" type="button" style="color:lime;"><i class="fa fa-power-off"></i></button>
           <button class="` + this.btnSize + ` btn-secondary" onClick="TimeSwitchControl.save()"><i class="fa fa-save"></i></button>
         </div>
     </div>
@@ -187,7 +187,7 @@ class TimeSwitchControl extends Control
         let output  = `<thead><th class="switchAll"></th>`;
         let colspan = 60 / this.options.minutes;
         for (let hour = 0; hour < 24; hour++) {
-            output += `<th class="tsHour" data-hour="` + hour + `" colspan="` + colspan + `">` + hour + `</th>`;
+            output += `<th style="text-align: left" class="tsHour" data-hour="` + hour + `" colspan="` + colspan + `">` + hour + `</th>`;
         }
         output += `</head>`;
         return output;
@@ -243,6 +243,7 @@ class TimeSwitchControl extends Control
                 break;
         }
         return dayString.charAt(hour);
+        return parseInt(dayString.charAt(hour));
     }
 
     /**
@@ -250,11 +251,15 @@ class TimeSwitchControl extends Control
      */
     drawCell(day, offset, hour) {
         let tsClass = "off",
-            myVal   = this.getValueAt(day, offset);
+            myVal   = this.getValueAt(day, offset),
+            test    = "";
         if (myVal === 1) {
             tsClass = "on";
         }
-        return `<td class="tsField ` + tsClass + `" data-hour="` + hour + `" data-day="` + day + `" data-offset="` + offset + `"></td>`;
+        if(offset % 4 === 0) {
+            test = 'style="border-left:2px solid white;"';
+        }
+        return `<td class="tsField ` + tsClass + `" `+ test +` data-hour="` + hour + `" data-day="` + day + `" data-offset="` + offset + `"></td>`;
     }
 
 }
