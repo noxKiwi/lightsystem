@@ -266,7 +266,7 @@ final class DataClient extends AbstractClient implements DataClientInterface
      */
     private function query(GetDataRequest $request): array
     {
-        $group          = '_room_temperature';
+        $group = ArchiveGroupModel::expect($request->groupId);
         $intervalFormat = static::INTERVALS[$request->interval];
         $fields         = '';
         if (empty($request->opcItems)) {
