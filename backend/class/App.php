@@ -11,6 +11,8 @@ use noxkiwi\core\Helper\LinkHelper;
 use noxkiwi\core\Path;
 use noxkiwi\lightsystem\Frontend\Control;
 use noxkiwi\lightsystem\Frontend\Control\AlarmControl;
+use noxkiwi\lightsystem\Frontend\Control\AutoManualControl;
+use noxkiwi\lightsystem\Frontend\Control\AlarmValueControl;
 use noxkiwi\lightsystem\Frontend\Control\DataMonitorControl;
 use noxkiwi\lightsystem\Frontend\Control\ChartControl;
 use noxkiwi\lightsystem\Frontend\Control\EventMonitorControl;
@@ -83,6 +85,8 @@ final class App extends \noxkiwi\core\App
     {
         // @formatter:on
         Control::addControl(new AlarmControl());
+        Control::addControl(new AutoManualControl());
+        Control::addControl(new AlarmValueControl());
         Control::addControl(new ChartControl());
         Control::addControl(new TimeSwitchControl());
         Control::addControl(new EventMonitorControl());

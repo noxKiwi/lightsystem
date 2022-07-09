@@ -90,7 +90,7 @@ class AlarmClient extends BaseClient
     }
 
     /**
-     * I will return the amount of alarms that have not gone yet.
+     * I will return the amount of alarms that have not disengaged yet.
      * @returns int
      */
     async count() {
@@ -123,6 +123,17 @@ class AlarmClient extends BaseClient
     async list() {
         await this.doRequest("list").then((data) => {
             this.data.list = data.response;
+        });
+        return this.data.list;
+    }
+
+    /**
+     * I will return the list of alarms that are currently set off.
+     * @return array
+     */
+    async getInfo(opcNodeId, callback) {
+        await this.doRequest("getInfo", opcNodeId).then((data) => {
+            callback(data.response);
         });
         return this.data.list;
     }

@@ -120,7 +120,6 @@ class Core
             persist: false,
             create: false
         });
-        alert('A');
         modal.modal({ show : true });
     }
 

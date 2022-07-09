@@ -3,10 +3,9 @@
 /**
  *
  */
-class ContextMenu
-{
+class ContextMenu {
     constructor() {
-        $("body").delegate("svg [finaltag]", "contextmenu", function () {
+        $("body").delegate("[finaltag]", "click", function (e) {
             ContextMenu.make(this);
             return false;
         });
@@ -16,35 +15,32 @@ class ContextMenu
      * I will write down the context menu
      */
     static make(pointer) {
-        console.log(pointer);
-        let finalTag    = $(pointer).attr("finaltag"),
-            elementType = $(pointer).tagName;
+        let finalTag = $(pointer).attr("finaltag"),
+
+            elementType = pointer.tagName,
+            target = elementType + "[finaltag=\"" + finalTag + "\"]";
         Core.ajaxRequest({
-            url : "/?context=item&view=menu&tag=" + finalTag
+            url: "/?context=item&view=menu&tag=" + finalTag
         }).then(function (response) {
-            $(pointer).contextMenu({
-                selector : elementType + "[finaltag=\"" + finalTag + "\"]",
-                callback : ContextMenu.open,
-                build    : function (trigger, event) {
+            var definition = {
+                selector: target,
+                items: response.menu,
+                build: function (element, event) {
                     let options = {
-                        callback : ContextMenu.open,
-                        items    : {}
+                        callback: ContextMenu.open
                     };
-                    $.each(response.menu, function (index, item) {
-                        options.items[index] = item;
-                    });
-                    console.log(elementType + "[finaltag=\"" + finalTag + "\"]");
                     return options;
                 }
-            });
-            $(pointer).contextMenu();
+            };
+            $.contextMenu(definition).contextMenu();
+
         });
     }
 
     /**
      * I will work the clicked element from the context menu.
      */
-    static open(key) {
+    static open(key, b, c, d, e) {
         let myTag = $(this[0]).attr("finaltag");
 
         if (typeof (myTag) !== "string") {
@@ -61,7 +57,6 @@ class ContextMenu
 
         switch (key) {
             case "graph":
-
                 let chartInstnc = runtime.instances.highchartsExtender[getKey(runtime.instances.highchartsExtender)];
 
                 if (typeof (chartInstnc) !== "object") {
@@ -71,25 +66,25 @@ class ContextMenu
                 chartInstnc.addSeries(myTag + ".MW.SCALE.F_VALUE", chartInstnc.start, chartInstnc.end, "");
 
                 return true;
-            case "on":
+            case "Enable":
                 ItemManager.write(myTag + ".STATUS.F_VALUE", true);
                 return true;
-            case "off":
+            case "Disable":
                 ItemManager.write(myTag + ".STATUS.F_VALUE", false);
                 return true;
-            case "toggle":
+            case "Toggle":
                 ItemManager.write(myTag + ".STATUS.F_VALUE", "VOID");
                 return true;
             case "quit":
                 return true;
-            case "Control.AlarmConfigControl":
-                AlarmConfigControl.show(myTag + ".SM.ALARM.F_VALUE");
+            case "Control.AlarmValueControl":
+                PanelManager.showPanel('control', {control: 'AlarmValueControl', data : {tag:myTag}})
                 return true;
             case "Control.ReadingControl":
                 ReadingControl.show(myTag + ".MW.SCALE.F_VALUE");
                 return true;
             case "Control.TimeSwitchControl":
-                TimeSwitchControl.show(myTag + ".STATUS.F_VALUE");
+                PanelManager.showPanel('control', {control: 'TimeSwitchControl', data : {tag:myTag}})
                 return true;
             case "Control.CountvalueControl":
                 CountvalueControl.show(myTag + ".MW.SCALE.F_VALUE");

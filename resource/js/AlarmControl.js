@@ -9,8 +9,8 @@ class AlarmControl extends TableControl
         super(pointer);
         Translate.addTranslations("enUS", {
             alarm_aggregate       : "Aggregate",
-            alarm_came            : "Came",
-            alarm_gone            : "Gone",
+            alarm_engaged         : "Engaged",
+            alarm_disengaged            : "Disengaged",
             alarm_acknowledged    : "Acknowledged",
             alarm_acknowledge_all : "Acknowledge all",
             alarm_acknowledge     : "Acknowledge",
@@ -60,8 +60,8 @@ class AlarmControl extends TableControl
         <tr>
             <th>` + Translate.get("alarm_name") + `</th>
             <th>` + Translate.get("alarm_area") + `</th>
-            <th>` + Translate.get("alarm_came") + `</th>
-            <th>` + Translate.get("alarm_gone") + `</th>
+            <th>` + Translate.get("alarm_engaged") + `</th>
+            <th>` + Translate.get("alarm_disengaged") + `</th>
             <th>` + Translate.get("alarm_acknowledged") + `</th>
         </tr>
     </thead>
@@ -90,9 +90,9 @@ class AlarmControl extends TableControl
         let style         = "warning",
             onclick       = "",
             title         = "",
-            outputGone    = alarm.gone === null ? "-" : alarm.gone,
+            outputDisengaged    = alarm.disengaged === null ? "-" : alarm.disengaged,
             outputAckdate = alarm.ackdate === null ? "-" : alarm.ackdate;
-        if (typeof (alarm.came) !== "string") {
+        if (typeof (alarm.engaged) !== "string") {
             return '';
         }
         if (typeof (alarm.ackdate) !== "string") {
@@ -100,15 +100,15 @@ class AlarmControl extends TableControl
             onclick = `onclick="AlarmClient.getInstance().acknowledge('` + alarm.address + `')"`;
             title   = `title="` + Translate.get("alarm_acknowledge") + `"`;
         }
-        if (typeof (alarm.gone) === "string") {
+        if (typeof (alarm.disengaged) === "string") {
             style = "success";
         }
         return `
 <tr class="alarmRow table-` + style + `" ` + onclick + title + ` >
     <td class="text-sm">` + alarm.name + `</td>
     <td class="text-sm">` + alarm.area + `</td>
-    <td class="text-sm">` + alarm.came + `</td>
-    <td class="text-sm">` + outputGone + `</td>
+    <td class="text-sm">` + alarm.engaged + `</td>
+    <td class="text-sm">` + outputDisengaged + `</td>
     <td class="text-sm">` + outputAckdate + `</td>
 </tr>
 `;

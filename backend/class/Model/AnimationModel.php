@@ -49,17 +49,16 @@ final class AnimationModel extends Model
             }
             $animationModel = self::getInstance();
             $animationModel->addFilter('opc_item_id', $opcItem['opc_item_id']);
-            #$animationModel->useCache();
+            $animationModel->useCache();
             $animationModel->search();
             $animationEntries = $animationModel->getResult();
             foreach ($animationEntries as $animationEntry) {
-                $animationDataSets = $animationEntry['visu_animation_data']['animation_data'] ?? [];
+                $animationDataSets = $animationEntry['render_animation_data'] ?? [];
                 foreach ($animationDataSets as $animationDatum) {
-                    $myAnimation = self::chooseAnimations($updateValue->get()['tag'], $animationDatum, $updateValue->get()['value']);
-                    if (empty($myAnimation)) {
-                        continue;
+                    $myAnimations = self::chooseAnimations($updateValue->get()['tag'], $animationDatum, $updateValue->get()['value']);
+                    foreach($myAnimations as $myAnimation) {
+                        $animationData[] = $myAnimation;
                     }
-                    $animationData[] = $myAnimation[0];
                 }
             }
         } catch (InvalidArgumentException $exception) {

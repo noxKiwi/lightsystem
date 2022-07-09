@@ -127,13 +127,18 @@ class PanelManager
 
         let controlName = $(controlElements).data("control"),
             pointer     = $("#" + data.render_panel_id).find(".jqx-window-content");
-        console.log(controlName);
         switch (controlName) {
             case "AlarmControl":
                 if (typeof (runtime.controls["AlarmControl"]) === "undefined") {
                     runtime.controls["AlarmControl"] = [];
                 }
                 runtime.controls["AlarmControl"].push(new AlarmControl(pointer));
+                break;
+            case "AlarmValueControl":
+                if (typeof (runtime.controls["AlarmValueControl"]) === "undefined") {
+                    runtime.controls["AlarmValueControl"] = [];
+                }
+                runtime.controls["AlarmValueControl"].push(new AlarmValueControl(pointer));
                 break;
             case "TimeSwitchControl":
                 if (typeof (runtime.controls["TimeSwitchControl"]) === "undefined") {

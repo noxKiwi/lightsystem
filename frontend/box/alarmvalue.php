@@ -8,7 +8,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">WENN: ( Messwert + </span>
             </div>
-            <input type="number" class="form-control" value="" aria-describedby="basic-addon1" data-propertyName="alarm_hysteresisvalue" data-propertyTarget="value">
+            <input type="number" class="form-control" value="" aria-describedby="basic-addon1" data-propertyName="response.hysteresis.hysteresisValue" data-propertyTarget="value">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">)</span>
             </div>
@@ -28,7 +28,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Dann setze Alarm aktiv nach </span>
             </div>
-            <input type="number" class="form-control" value="" aria-describedby="basic-addon1" data-propertyName="alarm_hysteresistime" data-propertyTarget="value">
+            <input type="number" class="form-control" value="" aria-describedby="basic-addon1" data-propertyName="response.hysteresis.hysteresisTime" data-propertyTarget="value">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Sekunden</span>
             </div>

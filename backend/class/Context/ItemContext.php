@@ -1,4 +1,5 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
+
 namespace noxkiwi\lightsystem\Context;
 
 use noxkiwi\core\Environment;
@@ -6,6 +7,9 @@ use noxkiwi\core\Error;
 use noxkiwi\core\Exception\InvalidArgumentException;
 use noxkiwi\core\Helper\FrontendHelper;
 use noxkiwi\core\Traits\TranslationTrait;
+use noxkiwi\dataabstraction\Comparator;
+use noxkiwi\dataabstraction\Entry;
+use noxkiwi\lightsystem\Frontend\Control;
 use noxkiwi\lightsystem\Model\OpcItemModel;
 use noxkiwi\lightsystem\Model\OpcNodeModel;
 use noxkiwi\lightsystem\Api\LightSystem\BaseClient;
@@ -45,6 +49,7 @@ final class ItemContext extends ApiContext
     {
         parent::__construct();
         $this->environment = Environment::getInstance();
+        $this->itemModel = OpcItemModel::getInstance();
     }
 
     /**
@@ -54,7 +59,7 @@ final class ItemContext extends ApiContext
     protected function viewWrite(): void
     {
         $this->baseClient = BaseClient::getInstance();
-        $address          = $this->request->get('tag', '');
+        $address = $this->request->get('tag', '');
         if (empty($address)) {
             throw new InvalidArgumentException("Missing parameter 'tag'", E_ERROR);
         }
@@ -65,8 +70,8 @@ final class ItemContext extends ApiContext
         if ($writeValue === 'VOID') {
             $currentValue = $this->baseClient->read($address);
             if (is_array($currentValue) || $currentValue === null) {
-                $error = $this->baseClient->getFirstError();
-                if (! empty($error)) {
+                $error = $this->baseClient->getErrors()[0] ?? [];
+                if (!empty($error)) {
                     $this->feedbackError($this->translate($error[Error::KEY_CODE], compact('address')));
 
                     return;
@@ -82,15 +87,15 @@ final class ItemContext extends ApiContext
         $element = OpcItemModel::getInstance();
         $element->addFilter('opc_item_address', $address);
         $item = $element->search();
-        if (! empty($item[0]['opc_node_id'])) {
+        if (!empty($item[0]['opc_node_id'])) {
             $node = OpcNodeModel::getInstance()->loadEntry($item[0]['opc_node_id']);
-            if (! empty($node->opc_node_name)) {
+            if (!empty($node->opc_node_name)) {
                 $name = $node->opc_node_name;
             }
         }
-        $text                  = "WriteValue: $name was set to $writeValue";
-        $mailSubject           = 'Address has been written';
-        $mailBody              = <<<HTML
+        $text = "WriteValue: $name was set to $writeValue";
+        $mailSubject = 'Address has been written';
+        $mailBody = <<<HTML
 <p>Oh hi,</p>
 <p>I am [CORVUS] Automation bot.
 <br />
@@ -99,11 +104,11 @@ $text
 <p>If you have any concern about this notification, please don't hesitate to catch up with us.</p>
 <p>Have a nice day!</p>
 HTML;
-        $mailContent           = FrontendHelper::parseFile(Path::getInheritedPath(Path::MAIL_TEMPLATE . 'html/template.php'), compact('mailBody', 'mailSubject'));
-        $commandMessage        = new CommandMessage();
-        $commandMessage->item  = $address;
+        $mailContent = FrontendHelper::parseFile(Path::getInheritedPath(Path::MAIL_TEMPLATE . 'html/template.php'), compact('mailBody', 'mailSubject'));
+        $commandMessage = new CommandMessage();
+        $commandMessage->item = $address;
         $commandMessage->value = $writeValue;
-        $mailer                = Mailer::getInstance();
+        $mailer = Mailer::getInstance();
         $mailer->setHtml();
         $mailer->setFrom('no-reply@nox.kiwi', 'Nox Sender');
         $mailer->setBody($mailContent);
@@ -125,5 +130,53 @@ HTML;
         Updatemanager::getInstance()->bindTags(
             (array)$this->request->get('tags', [])
         );
+    }
+
+    private function getAddress(): Entry
+    {
+        $address = (string)$this->request->get('tag', '');
+        if (empty($address)) {
+            throw new InvalidArgumentException('You must pass the parameter "tag"', E_ERROR);
+        }
+        $this->itemModel->addFilter('opc_item_address', $address);
+        $res = $this->itemModel->search();
+        if (empty($res)) {
+            throw new InvalidArgumentException("The desired address $address was not found", E_ERROR);
+        }
+
+        return $this->itemModel::expect($res[0]['opc_item_id']);
+    }
+
+    private function getAddresses(): array
+    {
+        $address = (string)$this->request->get('tag', '');
+        if (empty($address)) {
+            throw new InvalidArgumentException('You must pass the parameter "tag"', E_ERROR);
+        }
+        $this->itemModel->addFilter('opc_item_address', $address, Comparator::BEGINS);
+        return $this->itemModel->search();
+    }
+
+    protected function viewMenu(): void
+    {
+        $address = $this->getAddress();
+        $node = OpcNodeModel::expect($address->opc_node_id);
+        $items = OpcNodeModel::getOpcItems($node);
+
+        $elements = [];
+
+
+        $controls = Control::getControls();
+        foreach ($items as $opcItem) {
+            foreach ($controls as $control) {
+                $controlElements = $control->getContextMenu($opcItem);
+                foreach ($controlElements as $name => $element) {
+                    $elements[$name] = $element;
+                }
+            }
+        }
+
+
+        $this->response->set('menu', $elements);
     }
 }

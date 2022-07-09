@@ -33,6 +33,6 @@ final class AlarmControl extends Control
     {
         parent::__construct($options);
         $this->areas   = $options[self::PARAM_AREAS] ?? AlarmClientInterface::AREAS_ALL;
-        $this->valence = $options[self::PARAM_VALENCE] ?? AlarmClientInterface::VALENCE_CAME;
+        $this->valence = $options[self::PARAM_VALENCE] ?? AlarmClientInterface::VALENCE_ENGAGED;
     }
 }

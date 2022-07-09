@@ -1,44 +1,53 @@
-<div class="card-body">
+<?php declare(strict_types = 1);
+namespace noxkiwi\lightsystem;
+
+use noxkiwi\core\Request;
+
+$request = Request::getInstance();
+
+echo <<<HTML
+<div class="card-body control"
+        data-control="AlarmValueControl"
+        id="95Content"
+        class="AlarmValueControl"
+        tag="{$request->get('panel_data>data>tag', 'ASNAEB')}"
+        tag="{$request->get('panel_data>data>tag', 'ASNAEB')}">
     <div class="row">
         <h5 class="card-title" data-propertyName="name" data-propertyTarget="html"></h5>
     </div>
     <div class="row">
-        <div class="input-group mb-3">
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Comparison</span>
+            </div>
+            <select data-propertyName="response.comparison.comparisonType" data-propertyTarget="value">
+                <option value="EQ">==</option>
+                <option value="NEQ">!=</option>
+                <option value="GT">&gt;</option>
+                <option value="GTE">&gt;=</option>
+                <option value="LT">&lt;</option>
+                <option value="LTE">&lt;=</option>
+            </select>
+            <input type="number" class="form-control" value="" aria-describedby="basic-addon1" data-propertyName="response.comparison.comparisonValue" data-propertyTarget="value">
+        </div>
+        <div class="input-group input-group-sm mb-3">
             <input type="hidden" data-propertyName="alarm_id" data-propertyTarget="value"/>
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">WENN: ( Messwert + </span>
+                <span class="input-group-text">Hysteresis Value</span> 
             </div>
-            <input type="number" class="form-control" value="" aria-describedby="basic-addon1" data-propertyName="alarm_hysteresisvalue" data-propertyTarget="value">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">)</span>
-            </div>
-            <select data-propertyName="alarm_comparator" data-propertyTarget="value">
-                <option value="equals">==</option>
-                <option value="not_equals">!=</option>
-                <option value="greater">&gt;</option>
-                <option value="greaterOrEqual">&gt;=</option>
-                <option value="less">&lt;</option>
-                <option value="lessOrEqual">&lt;=</option>
-            </select>
-            <input type="number" class="form-control" value="" aria-describedby="basic-addon1" data-propertyName="alarm_value" data-propertyTarget="value">
+            <input type="number" class="form-control" value="" aria-describedby="basic-addon1" data-propertyName="response.hysteresis.hysteresisValue" data-propertyTarget="value">
         </div>
-    </div>
-    <div class="row">
-        <div class="input-group mb-3">
+        <div class="input-group input-group-sm mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Dann setze Alarm aktiv nach </span>
+                <span class="input-group-text">Hysteresis Time</span>
             </div>
-            <input type="number" class="form-control" value="" aria-describedby="basic-addon1" data-propertyName="alarm_hysteresistime" data-propertyTarget="value">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Sekunden</span>
-            </div>
-            <div class="input-group-append">
-                <span class="btn btn-success" id="basic-addon2">Speichern</span>
-            </div>
+            <input type="number" class="form-control" value="" aria-describedby="basic-addon1" data-propertyName="response.hysteresis.hysteresisTime" data-propertyTarget="value">
         </div>
+        
+        <button class="btn btn-success">Speichern</button>
     </div>
-    <div class="row">
-        <h7 class="card-title">Messbereich von: <span data-propertyName="min" data-propertyTarget="html"></span> bis <span data-propertyName="max" data-propertyTarget="html"></span><span
-                    data-propertyName="unit" data-propertyTarget="html"></span></h7>
+    <div class="alert alert-primary" role="alert" data-propertyName="response.description">
+        If %ADDR% %COMPARATOR% %VALUE% + %HYSTERESISVALUE% for longer than %HYSTERESISTIME%, set the alarm value to %VALUEON%
     </div>
 </div>
+HTML;

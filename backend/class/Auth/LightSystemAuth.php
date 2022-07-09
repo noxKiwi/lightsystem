@@ -44,7 +44,7 @@ final class LightSystemAuth extends Auth
         $user = $this->userModel->search();
         if (empty($user)) {
 
-            return [];
+            return ['A' => 'B'];
         }
         $user = $user[0];
         if ((int)$user[UserModel::FLAGS] !== 1) {

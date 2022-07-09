@@ -90,7 +90,7 @@ final class DashboardContext extends Context
         FrontendHelper::addResource('js', 'Plugin');
         FrontendHelper::addResource('js', 'Control');
         FrontendHelper::addResource('js', 'ActivityMonitorControl');
-        FrontendHelper::addResource('js', 'AlarmConfigControl');
+        FrontendHelper::addResource('js', 'AlarmValueControl');
         FrontendHelper::addResource('js', 'BaseClient');
         FrontendHelper::addResource('js', 'AlarmClient');
         FrontendHelper::addResource('js', 'EventClient');
@@ -146,11 +146,11 @@ final class DashboardContext extends Context
                 'debugmode'      => (int)$this->request->get('debugmode', 0) === 1
             ],
             'defaults'      => [
-                'firstpanel'     => (int)$this->request->get('firstpanel', 1001),
+                'firstpanel'     => (int)$this->request->get('firstpanel', 1),
                 'firstpaneldata' => $this->request->get(
                     'firstpaneldata',
                     [
-                        'tag' => ''
+                        'tag' => 'HOME'
                     ]
                 )
             ],

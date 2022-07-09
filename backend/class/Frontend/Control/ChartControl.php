@@ -1,7 +1,10 @@
 <?php declare(strict_types = 1);
 namespace noxkiwi\lightsystem\Frontend\Control;
 
+use noxkiwi\dataabstraction\Entry;
+use noxkiwi\lightsystem\Frontend\ContextMenuEntry;
 use noxkiwi\lightsystem\Frontend\Control;
+use noxkiwi\lightsystem\Model\OpcItemModel;
 
 /**
  * I am the ChartControl class.

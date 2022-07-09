@@ -3,6 +3,7 @@ namespace noxkiwi\lightsystem\Frontend;
 
 use noxkiwi\core\Helper\FrontendHelper;
 use noxkiwi\core\Traits\TranslationTrait;
+use noxkiwi\dataabstraction\Entry;
 use noxkiwi\lightsystem\Frontend\Control\ControlInterface;
 use noxkiwi\lightsystem\Path;
 
@@ -39,6 +40,18 @@ abstract class Control implements ControlInterface
         $this->setHeight($options[ControlInterface::OPTION_HEIGHT] ?? 350);
     }
 
+    public function getContextMenu(Entry $opcItem): array
+    {
+        $elements = [];
+        if ($opcItem->opc_item_flags == 7) {
+            $a = new ContextMenuEntry();
+            $a->name = 'Toogle';
+
+            $elements['Toggle'] = $a;
+        }
+        return $elements;
+    }
+
     /**
      * @param int $width
      *
@@ -72,7 +85,7 @@ abstract class Control implements ControlInterface
     }
 
     /**
-     * @return array
+     * @return \noxkiwi\lightsystem\Frontend\Control\ControlInterface[]
      */
     final public static function getControls(): array
     {
