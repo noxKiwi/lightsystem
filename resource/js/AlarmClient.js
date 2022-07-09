@@ -1,6 +1,6 @@
 "use strict";
 
-var bellSound = new buzz.sound("/asset/lib/sound/alert.mp3");
+const alarmSound = new buzz.sound("/asset/lib/sound/alert.mp3");
 
 /**
  * I am the AlarmClient.
@@ -110,7 +110,7 @@ class AlarmClient extends BaseClient
         } else {
             $(".alarmIconDisengaged").addClass("d-none");
             $(".alarmIconEngaged").removeClass("d-none");
-            bellSound.play();
+            alarmSound.play();
         }
         this.data.lastCount = this.data.count;
         return this.data.count;

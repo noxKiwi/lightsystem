@@ -1,6 +1,6 @@
 "use strict";
 
-var animationData = {
+const animationData = {
     /**
      * I am a collection of attributes that can be animated through the attr() function.
      * @type string[]

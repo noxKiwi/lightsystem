@@ -12,7 +12,6 @@ class AlarmValueControl extends Control {
     }
 
     show(nodeId) {
-//        PanelManager.showPanel(95);
         let self = this;
         AlarmClient.getInstance().getInfo(nodeId, function (response) {
             self.render("#95Content", response);

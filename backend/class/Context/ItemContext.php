@@ -132,6 +132,12 @@ HTML;
         );
     }
 
+    /**
+     * @return Entry
+     * @throws InvalidArgumentException
+     * @throws \noxkiwi\dataabstraction\Exception\EntryMissingException
+     * @throws \noxkiwi\singleton\Exception\SingletonException
+     */
     private function getAddress(): Entry
     {
         $address = (string)$this->request->get('tag', '');
@@ -147,6 +153,10 @@ HTML;
         return $this->itemModel::expect($res[0]['opc_item_id']);
     }
 
+    /**
+     * @return array
+     * @throws InvalidArgumentException
+     */
     private function getAddresses(): array
     {
         $address = (string)$this->request->get('tag', '');
@@ -157,6 +167,12 @@ HTML;
         return $this->itemModel->search();
     }
 
+    /**
+     * @return void
+     * @throws InvalidArgumentException
+     * @throws \noxkiwi\dataabstraction\Exception\EntryMissingException
+     * @throws \noxkiwi\singleton\Exception\SingletonException
+     */
     protected function viewMenu(): void
     {
         $address = $this->getAddress();

@@ -5,7 +5,7 @@
  */
 class ContextMenu {
     constructor() {
-        $("body").delegate("[finaltag]", "click", function (e) {
+        $("body").delegate("[finaltag]", "click", function () {
             ContextMenu.make(this);
             return false;
         });
@@ -22,14 +22,13 @@ class ContextMenu {
         Core.ajaxRequest({
             url: "/?context=item&view=menu&tag=" + finalTag
         }).then(function (response) {
-            var definition = {
+            let definition = {
                 selector: target,
                 items: response.menu,
-                build: function (element, event) {
-                    let options = {
+                build: function () {
+                    return {
                         callback: ContextMenu.open
                     };
-                    return options;
                 }
             };
             $.contextMenu(definition).contextMenu();
@@ -40,7 +39,7 @@ class ContextMenu {
     /**
      * I will work the clicked element from the context menu.
      */
-    static open(key, b, c, d, e) {
+    static open(key) {
         let myTag = $(this[0]).attr("finaltag");
 
         if (typeof (myTag) !== "string") {

@@ -245,7 +245,6 @@ class TimeSwitchControl extends Control
                 break;
         }
         return dayString.charAt(hour);
-        return parseInt(dayString.charAt(hour));
     }
 
     /**

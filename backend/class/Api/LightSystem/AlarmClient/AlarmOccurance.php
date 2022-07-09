@@ -60,6 +60,7 @@ class AlarmOccurance
                 $return->engaged = new DateTime();
             }
             if (! empty($data['engaged']) && is_string($data['engaged'])) {
+                // Ignored for now.
             }
             if (! empty($data['disengaged']) && is_string($data['disengaged'])) {
                 $return->disengaged = new DateTime($data['disengaged']);
