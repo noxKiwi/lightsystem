@@ -6,12 +6,13 @@ use noxkiwi\core\Exception\InvalidArgumentException;
 use noxkiwi\dataabstraction\Model;
 use noxkiwi\lightsystem\Value\Structure\AnimationValue;
 use noxkiwi\lightsystem\Value\Structure\UpdateValue;
+use function strpos;
 
 /**
  * I am the storage for different failure classes
  *
  * @package      noxkiwi\lightsystem
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2018 noxkiwi
  * @version      1.0.0
@@ -19,7 +20,7 @@ use noxkiwi\lightsystem\Value\Structure\UpdateValue;
  */
 final class AnimationModel extends Model
 {
-    public const    TABLE         = 'visu_animation';
+    public const    TABLE         = 'render_animation';
     public const    COMPARE_EQ    = 'EQ';
     public const    COMPARE_GT    = 'GT';
     public const    COMPARE_GTE   = 'GTE';
@@ -48,17 +49,16 @@ final class AnimationModel extends Model
             }
             $animationModel = self::getInstance();
             $animationModel->addFilter('opc_item_id', $opcItem['opc_item_id']);
-            #$animationModel->useCache();
+            $animationModel->useCache();
             $animationModel->search();
             $animationEntries = $animationModel->getResult();
             foreach ($animationEntries as $animationEntry) {
-                $animationDataSets = $animationEntry['visu_animation_data']['animation_data'] ?? [];
+                $animationDataSets = $animationEntry['render_animation_data'] ?? [];
                 foreach ($animationDataSets as $animationDatum) {
-                    $myAnimation = self::chooseAnimations($updateValue->get()['tag'], $animationDatum, $updateValue->get()['value']);
-                    if (empty($myAnimation)) {
-                        continue;
+                    $myAnimations = self::chooseAnimations($updateValue->get()['tag'], $animationDatum, $updateValue->get()['value']);
+                    foreach($myAnimations as $myAnimation) {
+                        $animationData[] = $myAnimation;
                     }
-                    $animationData[] = $myAnimation[0];
                 }
             }
         } catch (InvalidArgumentException $exception) {
@@ -154,7 +154,7 @@ final class AnimationModel extends Model
     {
         switch ($comparator) {
             case self::COMPARE_EQ:
-                return $value === $compValue;
+                return $value == $compValue;
             case self::COMPARE_GT:
                 return $value > $compValue;
             case self::COMPARE_GTE:
@@ -164,7 +164,7 @@ final class AnimationModel extends Model
             case self::COMPARE_LT:
                 return $value < $compValue;
             case self::COMPARE_NEQ:
-                return $value !== $compValue;
+                return $value != $compValue;
             default:
                 return false;
         }

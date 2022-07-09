@@ -56,13 +56,6 @@
       "type": "string_timestamp",
       "required": true,
       "unique": true
-    },
-    "user_failed_attempts": {
-      "name": "user_failed_attempts",
-      "default": 0,
-      "min": 0,
-      "max": 128,
-      "type": "number_integer"
     }
   },
   "primary": [

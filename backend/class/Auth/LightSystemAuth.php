@@ -4,12 +4,14 @@ namespace noxkiwi\lightsystem\Auth;
 use noxkiwi\core\Auth;
 use noxkiwi\core\Request;
 use noxkiwi\lightsystem\Model\UserModel;
+use function date;
+use function password_verify;
 
 /**
  * I am the DataClient.
  *
  * @package      noxkiwi\lightsystem
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2019 noxkiwi
  * @version      1.0.0
@@ -38,11 +40,11 @@ final class LightSystemAuth extends Auth
      */
     public function authenticate(string $userName, string $password): array
     {
-    	$this->userModel->addFilter(UserModel::EMAIL, $userName);
+        $this->userModel->addFilter(UserModel::EMAIL, $userName);
         $user = $this->userModel->search();
         if (empty($user)) {
 
-            return [];
+            return ['A' => 'B'];
         }
         $user = $user[0];
         if ((int)$user[UserModel::FLAGS] !== 1) {

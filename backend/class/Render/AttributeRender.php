@@ -1,17 +1,19 @@
 <?php declare(strict_types = 1);
 namespace noxkiwi\lightsystem\Render;
 
+use noxkiwi\core\Helper\StringHelper;
 use noxkiwi\dataabstraction\Entry;
 use noxkiwi\lightsystem\Exception\RenderException;
 use noxkiwi\lightsystem\Render;
 use function array_key_exists;
+use function str_replace;
 use const E_WARNING;
 
 /**
  * I am the renderer for any SVG tag's attribute.
  *
  * @package      noxkiwi\lightsystem
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2018 noxkiwi
  * @version      1.0.0

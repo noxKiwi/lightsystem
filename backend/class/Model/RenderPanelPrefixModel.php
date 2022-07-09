@@ -8,7 +8,7 @@ use noxkiwi\dataabstraction\Model;
  * I manage the panels and their prefixes
  *
  * @package      noxkiwi\lightsystem
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2021 noxkiwi
  * @version      1.0.0

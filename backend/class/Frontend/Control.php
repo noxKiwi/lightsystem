@@ -3,6 +3,7 @@ namespace noxkiwi\lightsystem\Frontend;
 
 use noxkiwi\core\Helper\FrontendHelper;
 use noxkiwi\core\Traits\TranslationTrait;
+use noxkiwi\dataabstraction\Entry;
 use noxkiwi\lightsystem\Frontend\Control\ControlInterface;
 use noxkiwi\lightsystem\Path;
 
@@ -10,7 +11,7 @@ use noxkiwi\lightsystem\Path;
  * I am the blank control class.
  *
  * @package      noxkiwi\lightsystem\Frontend
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2019 noxkiwi
  * @version      1.0.0
@@ -37,6 +38,18 @@ abstract class Control implements ControlInterface
     {
         $this->setWidth($options[ControlInterface::OPTION_WIDTH] ?? 800);
         $this->setHeight($options[ControlInterface::OPTION_HEIGHT] ?? 350);
+    }
+
+    public function getContextMenu(Entry $opcItem): array
+    {
+        $elements = [];
+        if ($opcItem->opc_item_flags == 7) {
+            $a = new ContextMenuEntry();
+            $a->name = 'Toogle';
+
+            $elements['Toggle'] = $a;
+        }
+        return $elements;
     }
 
     /**
@@ -72,7 +85,7 @@ abstract class Control implements ControlInterface
     }
 
     /**
-     * @return array
+     * @return \noxkiwi\lightsystem\Frontend\Control\ControlInterface[]
      */
     final public static function getControls(): array
     {

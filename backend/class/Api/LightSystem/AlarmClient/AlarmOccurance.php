@@ -11,7 +11,7 @@ use const E_USER_NOTICE;
  * I am an alarm entry.
  *
  * @package      noxkiwi\lightsystem
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2019 noxkiwi
  * @version      1.0.0
@@ -26,9 +26,9 @@ class AlarmOccurance
     /** @var string */
     private string $name;
     /** @var \DateTime */
-    private ?DateTime $came;
+    private ?DateTime $engaged;
     /** @var \DateTime|null */
-    private ?DateTime $gone;
+    private ?DateTime $disengaged;
     /** @var \DateTime|null */
     private ?DateTime $ackdate;
     /** @var int */
@@ -42,23 +42,28 @@ class AlarmOccurance
     public static function fromApi(array $data): ?AlarmOccurance
     {
         $return          = new self();
-        $return->came    = null;
-        $return->gone    = null;
+        $return->engaged    = null;
+        $return->disengaged    = null;
         $return->name    = $data['name'] ?? 'no name';
         $return->address = $data['address'] ?? 'no address';
         $return->area    = $data['area'] ?? '';
         try {
             $return->ackdate = null;
             $return->ack     = 0;
-            if (! empty($data['ack'])) {
+            if (! empty($data['ack']) && is_string($data['ack'])) {
                 $return->ackdate = new DateTime($data['ack']);
                 $return->ack     = (int)($data['ack'] ?? 0);
             }
-            if (! empty($data['came'])) {
-                $return->came = new DateTime($data['came']);
+            if (is_string($data['engaged'])) {
+                $return->engaged = new DateTime($data['engaged']);
+            } else {
+                $return->engaged = new DateTime();
             }
-            if (! empty($data['gone'])) {
-                $return->gone = new DateTime($data['gone']);
+            if (! empty($data['engaged']) && is_string($data['engaged'])) {
+                // Ignored for now.
+            }
+            if (! empty($data['disengaged']) && is_string($data['disengaged'])) {
+                $return->disengaged = new DateTime($data['disengaged']);
             }
         } catch (Exception $exception) {
             ErrorHandler::handleException($exception, E_USER_NOTICE);
@@ -80,25 +85,25 @@ class AlarmOccurance
     /**
      * @return bool
      */
-    public function isGone(): bool
+    public function isDisengaged(): bool
     {
-        return $this->getGone() !== null;
+        return $this->getDisengaged() !== null;
     }
 
     /**
      * @return \DateTime|null
      */
-    public function getGone(): ?DateTime
+    public function getDisengaged(): ?DateTime
     {
-        return $this->gone;
+        return $this->disengaged;
     }
 
     /**
      * @return \DateTime|null
      */
-    public function getCame(): ?DateTime
+    public function getEngaged(): ?DateTime
     {
-        return $this->came;
+        return $this->engaged;
     }
 
     /**
@@ -120,8 +125,8 @@ class AlarmOccurance
             'area'    => $this->area,
             'ackdate' => $this->ackdate ? DateTimeHelper::toUserFormat($this->ackdate) : null,
             'ack'     => $this->ack,
-            'came'    => $this->came ? DateTimeHelper::toUserFormat($this->came) : null,
-            'gone'    => $this->gone ? DateTimeHelper::toUserFormat($this->gone) : null
+            'engaged'    => $this->engaged ? DateTimeHelper::toUserFormat($this->engaged) : null,
+            'disengaged'    => $this->disengaged ? DateTimeHelper::toUserFormat($this->disengaged) : null
         ];
     }
 }

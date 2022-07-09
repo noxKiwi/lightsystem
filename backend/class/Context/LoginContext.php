@@ -8,12 +8,10 @@ use noxkiwi\core\Environment;
 use noxkiwi\core\Helper\LinkHelper;
 use noxkiwi\core\Helper\WebHelper;
 use noxkiwi\core\Session;
-use noxkiwi\lightsystem\Api\Telegram\Request\SendMessageRequest;
-use noxkiwi\lightsystem\Api\Telegram\Telegram;
 use noxkiwi\log\LogLevel;
 use function defined;
-use function explode;
-use const E_ERROR;
+use function file_get_contents;
+use function in_array;
 
 /**
  * I am
@@ -21,7 +19,7 @@ use const E_ERROR;
  * @package      noxkiwi\lightsystem
  * @uses         \noxkiwi\lightsystem\Context\LoginContext::viewLogin()
  * @uses         \noxkiwi\lightsystem\Context\LoginContext::viewLogout()
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2018 - 2021 noxkiwi
  * @version      1.0.0
@@ -59,8 +57,7 @@ final class LoginContext extends Context
         $ipAddress  = WebHelper::getClientIp();
         $skippedIps = Environment::getInstance()->get('lsSkipLogin>ipv4', []);
         if (in_array($ipAddress, $skippedIps, true)) {
-            $botId = end(explode('.', $ipAddress));
-            Session::getInstance()->start(['user_username' => "TSBot {$botId}"]);
+            Session::getInstance()->start(['user_username' => "TSBot $ipAddress"]);
             LinkHelper::forward([Mvc::CONTEXT => 'dashboard', Mvc::VIEW=>'show']);
         }
         $this->request->set('template', 'login');
@@ -94,9 +91,7 @@ final class LoginContext extends Context
         if (empty($user)) {
             LinkHelper::forward([Mvc::CONTEXT => self::NAME, Mvc::VIEW => self::VIEW_LOGOUT]);
         }
-        $addressSegments = explode('.', $ipAddress);
-        $botId           = end($addressSegments);
-        $userName        = "TSBot {$botId}";
+        $userName        = "TSBot {$ipAddress}";
         Session::getInstance()->start(['user_username' => $userName]);
         LinkHelper::forward([Mvc::CONTEXT => 'dashboard', Mvc::VIEW=>'show']);
     }

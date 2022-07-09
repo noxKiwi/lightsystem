@@ -7,12 +7,14 @@ use noxkiwi\lightsystem\Frontend\Control;
 use noxkiwi\lightsystem\Frontend\Control\ControlInterface;
 use noxkiwi\lightsystem\Model\RenderPanelModel;
 use noxkiwi\lightsystem\Render\PanelRender;
+use function rand;
+use const E_WARNING;
 
 /**
  * I am the Context that renders Panels.
  *
  * @package      noxkiwi\lightsystem
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2018 - 2021 noxkiwi
  * @version      1.0.1

@@ -1,6 +1,7 @@
 <?php declare(strict_types = 1);
 namespace noxkiwi\lightsystem;
 
+use JetBrains\PhpStorm\NoReturn;
 use noxkiwi\core\Environment;
 use noxkiwi\core\Gate\CidrGate;
 use noxkiwi\core\Gate\HostnameGate;
@@ -10,17 +11,18 @@ use noxkiwi\core\Helper\LinkHelper;
 use noxkiwi\core\Path;
 use noxkiwi\lightsystem\Frontend\Control;
 use noxkiwi\lightsystem\Frontend\Control\AlarmControl;
+use noxkiwi\lightsystem\Frontend\Control\AutoManualControl;
+use noxkiwi\lightsystem\Frontend\Control\AlarmValueControl;
 use noxkiwi\lightsystem\Frontend\Control\DataMonitorControl;
 use noxkiwi\lightsystem\Frontend\Control\ChartControl;
 use noxkiwi\lightsystem\Frontend\Control\EventMonitorControl;
 use noxkiwi\lightsystem\Frontend\Control\TimeSwitchControl;
-use function var_dump;
 
 /**
  * I am the App of the lightsystem.
  *
  * @package      noxkiwi\lightsystem
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2018 noxkiwi
  * @version      1.0.0
@@ -42,7 +44,7 @@ final class App extends \noxkiwi\core\App
     /**
      * @inheritDoc
      */
-    public function run(): void
+    #[NoReturn] public function run(): void
     {
         if (! $this->checkGates()) {
             echo FrontendHelper::parseFile(Path::getInheritedPath(Path::PAGE_403));
@@ -60,6 +62,7 @@ final class App extends \noxkiwi\core\App
      */
     private function checkGates(): bool
     {
+        parent::checkMaintenance();
         $env = Environment::getInstance();
         // Prepare CIDR
         $cidr = CidrGate::getInstance();
@@ -82,6 +85,8 @@ final class App extends \noxkiwi\core\App
     {
         // @formatter:on
         Control::addControl(new AlarmControl());
+        Control::addControl(new AutoManualControl());
+        Control::addControl(new AlarmValueControl());
         Control::addControl(new ChartControl());
         Control::addControl(new TimeSwitchControl());
         Control::addControl(new EventMonitorControl());

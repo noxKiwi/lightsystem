@@ -3,7 +3,6 @@
 namespace noxkiwi\lightsystem;
 
 use noxkiwi\core\Constants\Mvc;
-use noxkiwi\core\Exception\InvalidArgumentException;
 use noxkiwi\frontend\Element\Icon;
 use noxkiwi\core\Helper\FrontendHelper;
 use noxkiwi\core\Helper\JsonHelper;
@@ -12,10 +11,12 @@ use noxkiwi\core\Response;
 use noxkiwi\lightsystem\Model\RenderPanelModel;
 use noxkiwi\lightsystem\Model\RenderPanelPrefixModel;
 use noxkiwi\translator\Translator;
-use noxkiwi\core\Environment;use const E_ERROR;
+use noxkiwi\core\Environment;
 
 $crudLinks = '';
 $models = [
+        'Slave',
+        'Master',
         'Flow',
         'Account',
         'AlarmGroup',
@@ -100,6 +101,10 @@ HTML;
     <script type="text/javascript" src="/asset/lib/selectize/examples/js/jqueryui.js"></script>
     <script type="text/javascript" src="/asset/lib/selectize/dist/js/standalone/selectize.js"></script>
     <script type="text/javascript" src="/asset/lib/selectize/examples/js/index.js"></script>
+
+    <!-- Buzz.js -->
+    <script type="text/javascript" src="/asset/lib/buzz/buzz.min.js"></script>
+
     <!-- JQX -->
     <link rel="stylesheet" type="text/css" media="screen" href="/asset/lib/jqwidgets/jqwidgets/styles/jqx.base.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="/asset/lib/jqwidgets/jqwidgets/styles/jqx.light.css"/>
@@ -109,12 +114,16 @@ HTML;
     <script type="text/javascript" src="/asset/lib/snapsvg/snap.svg.min.js"></script>
 
     <!-- HIGHCHARTS -->
-    <script src="/lib/highcharts/code/highcharts.js"></script>
-    <script src="/lib/highcharts/code/modules/data.js"></script>
-    <script src="/lib/highcharts/code/modules/series-label.js"></script>
-    <script src="/lib/highcharts/code/modules/exporting.js"></script>
-    <script src="/lib/highcharts/code/modules/export-data.js"></script>
-    <script src="/lib/highcharts/code/modules/accessibility.js"></script>
+    <script src="/asset/lib/highcharts/code/highcharts.js"></script>
+    <script src="/asset/lib/highcharts/code/modules/data.js"></script>
+    <script src="/asset/lib/highcharts/code/modules/series-label.js"></script>
+    <script src="/asset/lib/highcharts/code/modules/exporting.js"></script>
+    <script src="/asset/lib/highcharts/code/modules/export-data.js"></script>
+    <script src="/asset/lib/highcharts/code/modules/accessibility.js"></script>
+
+    <!-- CONTEXTMENU -->
+    <script src="/asset/lib/jquery-contextmenu/jquery.contextMenu.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/asset/lib/jquery-contextmenu/jquery.contextMenu.min.css" >
     <?php echo FrontendHelper::getResourceList() ?>
 </head>
 <body>
@@ -161,7 +170,7 @@ HTML;
                                     title="<?=Translator::get('MAIN.LOGGING') ?>"><?= Icon::get(Icon::ICON_FILE_ARCHIVE) ?></a>
             </li>
             <li class="nav-item"><a class="nav-link btn"
-                                    onclick="PanelManager.showPanel('control', {control: 'TimeSwitchControl'})"
+                                    onclick="PanelManager.showPanel('control', {control: 'TimeSwitchControl', data:{tag:'HOME.RELAY07'}})"
                                     title="<?=Translator::get('MAIN.TIMESWITCH') ?>"><?= Icon::get(Icon::ICON_CLOCK) ?></a>
             </li>
             <li class="nav-item"><a class="nav-link btn"
@@ -220,6 +229,7 @@ HTML;
         Response::getInstance()->get('runtimeData', [])
     ) ?>;
     ls = new lightsystem();
+    a = new ContextMenu();
 </script>
 </body>
 </html>

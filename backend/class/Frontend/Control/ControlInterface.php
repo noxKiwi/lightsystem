@@ -1,11 +1,13 @@
 <?php declare(strict_types = 1);
 namespace noxkiwi\lightsystem\Frontend\Control;
 
+use noxkiwi\dataabstraction\Entry;
+
 /**
  * I am the VideoStreamControl class.
  *
  * @package      noxkiwi\lightsystem\Frontend\Control
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2019 noxkiwi
  * @version      1.0.0
@@ -24,4 +26,10 @@ interface ControlInterface
      * @return array
      */
     public function run(): array;
+
+    /**
+     * @param Entry $opcItem
+     * @return \noxkiwi\lightsystem\Frontend\ContextMenuEntry[]
+     */
+    public function getContextMenu(Entry $opcItem):array;
 }

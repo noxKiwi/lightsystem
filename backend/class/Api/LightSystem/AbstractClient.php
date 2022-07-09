@@ -7,15 +7,29 @@ use noxkiwi\core\Helper\WebHelper;
 use noxkiwi\lightsystem\Api\LightSystem\AbstractClient\AbstractClientInterface;
 use noxkiwi\lightsystem\Exception\XmlRpcException;
 use noxkiwi\singleton\Singleton;
+use noxkiwi\translator\Traits\TranslatorTrait;
+use function curl_close;
+use function curl_errno;
+use function curl_exec;
+use function curl_init;
+use function curl_setopt;
 use function is_int;
 use function strlen;
+use function xmlrpc_decode;
+use function xmlrpc_encode_request;
+use const CURLOPT_HTTPHEADER;
+use const CURLOPT_POSTFIELDS;
+use const CURLOPT_RETURNTRANSFER;
+use const CURLOPT_TIMEOUT;
+use const CURLOPT_URL;
+use const E_ERROR;
 use const E_USER_NOTICE;
 
 /**
  * I am the abstract Client for all RPCs that will be created for lightsystem project.
  *
  * @package      noxkiwi\lightsystem\Api\lightsystem
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2019 - 2021 noxkiwi
  * @version      1.0.1
@@ -23,6 +37,7 @@ use const E_USER_NOTICE;
  */
 abstract class AbstractClient extends Singleton implements AbstractClientInterface
 {
+    use TranslatorTrait;
     protected const USE_DRIVER                 = true;
     protected const EXCEPTION_INVALID_RESPONSE = 'invalidResponse';
     /** @var string I am the transport protocol that will be used for the XMLRpc Requests. */

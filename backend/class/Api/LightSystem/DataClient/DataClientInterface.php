@@ -7,7 +7,7 @@ use noxkiwi\lightsystem\Api\LightSystem\AbstractClient\AbstractClientInterface;
  * I am the DataClient interface.
  *
  * @package      noxkiwi\lightsystem
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2019 noxkiwi
  * @version      1.0.0
@@ -41,6 +41,6 @@ interface DataClientInterface extends AbstractClientInterface
      * @return array
      */
     public function getNodes(array $params): array;
-    
+
     public function getTable(array $params): array;
 }

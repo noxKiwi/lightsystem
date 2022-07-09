@@ -63,7 +63,7 @@ class ChartControl extends TableControl
     }
 
     /**
-     * I will update the chart and set the time range, calculated 
+     * I will update the chart and set the time range, calculated
      * back as far as the given seconds until NOW.
      * @param seconds
      */
@@ -126,7 +126,7 @@ class ChartControl extends TableControl
                 },
                 series : []
             });
-            self.setGroup("Temperature", 7);
+            self.setGroup("Temperature", 3);
         });
     }
 
@@ -148,7 +148,7 @@ class ChartControl extends TableControl
         this.ccTimeEnd   = new Date(end);
         this.ccTimeBegin = new Date(begin);
         // FAKED
-        self.setGroup("Temperature", 7);
+        self.setGroup("Temperature", 3);
     }
 
     setBegin(beginDate) {
@@ -256,7 +256,7 @@ class ChartControl extends TableControl
     buildRefreshButton() {
         return `<button type="button" class="btn btn-sm btn-primary dcRefresh" title="` + Translate.get("dataMonitorControl_refresh") + `"><i class="fas fa-sync"></i></button>`;
     }
-    
+
     buildRangeSelector() {
         return `
 <div class="dropdown rangeSelector">
@@ -277,7 +277,7 @@ class ChartControl extends TableControl
 <div class="btn-group btn-group-sm timeRange" role="group" aria-label="Control">
 </div>`;
     }
-    
+
     buildScrollSelector() {
         return `
 <div class="btn-group btn-group-sm ccPaging" role="group" aria-label="Control">

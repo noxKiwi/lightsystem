@@ -11,13 +11,14 @@ use noxkiwi\lightsystem\Model\OpcItemModel;
 use noxkiwi\lightsystem\Model\ArchiveGroupModel;
 use \DateInterval;
 use \DateTime;
+use function strtotime;
 use const E_USER_NOTICE;
 
 /**
  * I am the DataClient.
  *
  * @package      noxkiwi\lightsystem
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2019 noxkiwi
  * @version      1.0.0
@@ -40,16 +41,14 @@ final class DataClient extends AbstractClient implements DataClientInterface
     /*
      * This is the list of available display ranges (Show a table that contains a %DISPLAY% range).
      */
-    private const DISPLAY_YEAR  = 'YEAR';
-    private const DISPLAY_MONTH = 'MONTH';
-    #    private const DISPLAY_WEEK   = 'WEEK';
+    private const DISPLAY_YEAR   = 'YEAR';
+    private const DISPLAY_MONTH  = 'MONTH';
     private const DISPLAY_DAY    = 'DAY';
     private const DISPLAY_HOUR   = 'HOUR';
     private const DISPLAY_MINUTE = 'MINUTE';
     private const DISPLAYS       = [
         self::DISPLAY_YEAR,
         self::DISPLAY_MONTH,
-        #        self::DISPLAY_WEEK,
         self::DISPLAY_DAY,
         self::DISPLAY_HOUR,
         self::DISPLAY_MINUTE
@@ -61,30 +60,27 @@ final class DataClient extends AbstractClient implements DataClientInterface
     private const INTERVAL_YEAR    = 'YEAR';
     private const INTERVAL_QUARTER = 'QUARTER';
     private const INTERVAL_MONTH   = 'MONTH';
-    #    private const INTERVAL_WEEK    = 'WEEK';
-    private const INTERVAL_DAY    = 'DAY';
-    private const INTERVAL_HOUR   = 'HOUR';
-    private const INTERVAL_MINUTE = 'MINUTE';
-    private const INTERVAL_SECOND = 'SECOND';
-    private const INTERVALS       = [
+    private const INTERVAL_DAY     = 'DAY';
+    private const INTERVAL_HOUR    = 'HOUR';
+    private const INTERVAL_MINUTE  = 'MINUTE';
+    private const INTERVAL_SECOND  = 'SECOND';
+    private const INTERVALS        = [
         self::INTERVAL_YEAR   => '%Y',
         self::INTERVAL_MONTH  => '%Y-%m',
-        #        self::INTERVAL_WEEK   => '%Y-%V',
         self::INTERVAL_DAY    => '%Y-%m-%d',
         self::INTERVAL_HOUR   => '%Y-%m-%d %H:00',
         self::INTERVAL_MINUTE => '%Y-%m-%d %H:%i:00',
         self::INTERVAL_SECOND => '%Y-%m-%d %H:%i:%S'
     ];
-    private const INTERVALS2      = [
+    private const INTERVALS2       = [
         self::INTERVAL_YEAR   => 'Y',
         self::INTERVAL_MONTH  => 'Y-m',
-        #        self::INTERVAL_WEEK   => 'Y-V',
         self::INTERVAL_DAY    => 'Y-m-d',
         self::INTERVAL_HOUR   => 'Y-m-d H:00',
         self::INTERVAL_MINUTE => 'Y-m-d H:i:00',
         self::INTERVAL_SECOND => 'Y-m-d H:i:S'
     ];
-    private const INTERVALS3      = [
+    private const INTERVALS3       = [
         self::INTERVAL_YEAR   => 'Y-01-01 00:00:00',
         self::INTERVAL_MONTH  => 'Y-m-01 00:00:00',
         self::INTERVAL_DAY    => 'Y-m-d 00:00:00',
@@ -171,6 +167,37 @@ final class DataClient extends AbstractClient implements DataClientInterface
         return ['name' => $item[0]['opc_item_readable'] ?? $opcItem, 'data' => $data];
     }
 
+    /**
+     * @inheritDoc
+     */
+    public function getNodes(array $params): array
+    {
+        try {
+            $archiveItemModel = ArchiveItemModel::getInstance();
+            $archiveItemModel->addFilter('archive_group_id', $params['groupId'] ?? 0);
+            $items     = $archiveItemModel->search();
+            $itemModel = OpcItemModel::getInstance();
+            $nodes     = [];
+            foreach ($items as $archiveItem) {
+                $opcItem = $itemModel->loadEntry($archiveItem['opc_item_id']);
+                # Add OPC Item to response
+                $nodes[$opcItem->getField('opc_item_readable')] = $opcItem->getField('opc_item_address');
+            }
+
+            return $nodes;
+        } catch (Exception $exception) {
+            ErrorHandler::handleException($exception, E_USER_NOTICE);
+
+            return [];
+        }
+    }
+
+    /**
+     * @param string $display
+     *
+     * @throws \Exception
+     * @return \DateInterval
+     */
     private function getInterval(string $display): DateInterval
     {
         switch ($display) {
@@ -204,6 +231,7 @@ final class DataClient extends AbstractClient implements DataClientInterface
      * @param string $begin
      * @param string $display
      *
+     * @throws \Exception
      * @return \DateTime
      */
     private function getBegin(string $begin, string $display): DateTime
@@ -238,58 +266,39 @@ final class DataClient extends AbstractClient implements DataClientInterface
      */
     private function query(GetDataRequest $request): array
     {
-        $group          = '_room_temperature';
+        $group = ArchiveGroupModel::expect($request->groupId);
         $intervalFormat = static::INTERVALS[$request->interval];
         $fields         = '';
-        if(empty($request->opcItems)) {
+        if (empty($request->opcItems)) {
             $request->opcItems = [$request->opcItem];
         }
         foreach ($request->opcItems as $opcItem) {
             $fields .= <<<SQL
-, ROUND({$request->compression}(`$group`.`$opcItem`), 2)                          AS `$opcItem`
+, ROUND({$request->compression}(`{$group->archive_group_table}`.`$opcItem`), 2)                          AS `$opcItem`
 SQL;
         }
         $sql = <<<SQL
 SELECT
-    DATE_FORMAT( `$group`.`{$group}_created`, '{$request->sqlFormat}') AS `date` $fields
+    DATE_FORMAT( `{$group->archive_group_table}`.`{$group->archive_group_table}_created`, '{$request->sqlFormat}') AS `date` $fields
 FROM
-    `$group`
+    `{$group->archive_group_table}`
 WHERE
-    `$group`.`{$group}_created` BETWEEN '{$request->begin->format($request->phpFormat)}' AND '{$request->end->format($request->phpFormat)}'
+    `{$group->archive_group_table}`.`{$group->archive_group_table}_created` BETWEEN '{$request->begin->format($request->phpFormat)}' AND '{$request->end->format($request->phpFormat)}'
 GROUP BY
-    DATE_FORMAT( `$group`.`{$group}_created`, '{$request->sqlFormat}')
+    DATE_FORMAT( `{$group->archive_group_table}`.`{$group->archive_group_table}_created`, '{$request->sqlFormat}')
 SQL;
         $db  = Database::getInstance();
         $db->read($sql);
-
+die($sql);
         return $db->getResult();
     }
 
     /**
-     * @inheritDoc
+     * @param array $params
+     *
+     * @throws \Exception
+     * @return \noxkiwi\lightsystem\Api\LightSystem\DataClient\GetDataRequest
      */
-    public function getNodes(array $params): array
-    {
-        try {
-            $archiveItemModel = ArchiveItemModel::getInstance();
-            $archiveItemModel->addFilter('archive_group_id', $params['groupId'] ?? 0);
-            $items     = $archiveItemModel->search();
-            $itemModel = OpcItemModel::getInstance();
-            $nodes     = [];
-            foreach ($items as $archiveItem) {
-                $opcItem = $itemModel->loadEntry($archiveItem['opc_item_id']);
-                # Add OPC Item to response
-                $nodes[$opcItem->getField('opc_item_readable')] = $opcItem->getField('opc_item_address');
-            }
-
-            return $nodes;
-        } catch (Exception $exception) {
-            ErrorHandler::handleException($exception, E_USER_NOTICE);
-
-            return [];
-        }
-    }
-
     private function getObject(array $params): GetDataRequest
     {
         $object              = new GetDataRequest();
@@ -309,7 +318,10 @@ SQL;
 
     /**
      * I will build an HTML table with the given compression $params.
-     * @return array
+     *
+     * @param array $params
+     *
+     * @return string[]
      */
     public function getTable(array $params): array
     {
@@ -322,7 +334,12 @@ SQL;
             $table['columns'][]   = $node;
             $table['titles'][]    = $title;
         }
-        $table['data'] = $this->query($object);
+        try {
+            $table['data'] = $this->query($object);
+        } catch (Exception $exception) {
+            $table['data'] = [];
+            ErrorHandler::handleException($exception, E_USER_NOTICE);
+        }
 
         return [
             'table' => <<<HTML
@@ -334,6 +351,13 @@ HTML
         ];
     }
 
+    /**
+     * I will build the table body for the given $table.
+     *
+     * @param array $table
+     *
+     * @return string
+     */
     public function getBody(array $table): string
     {
         $html = '<tbody>';
@@ -355,6 +379,13 @@ HTML
         return $html . '</tbody>';
     }
 
+    /**
+     * I will create a table hader for the given $table.
+     *
+     * @param array $table
+     *
+     * @return string
+     */
     public function getHeaders(array $table): string
     {
         $html = '<thead><tr>';

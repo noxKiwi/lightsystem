@@ -10,7 +10,7 @@ use function is_string;
  * I am the renderer for a panel.
  *
  * @package      noxkiwi\lightsystem
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2018 noxkiwi
  * @version      1.0.0
@@ -45,7 +45,7 @@ final class PanelRender extends Render
         $element    = $this->getElement();
         $config     = $this->getConfig();
         $cache      = Cache::getInstance();
-        $cachedInfo = $cache->get('panela', (string)$element->render_panel_id);
+        $cachedInfo = $cache->get('panel', (string)$element->render_panel_id);
         if (is_string($cachedInfo)) {
             return $cachedInfo;
         }

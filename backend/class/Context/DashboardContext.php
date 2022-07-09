@@ -9,12 +9,16 @@ use noxkiwi\core\Helper\FrontendHelper;
 use noxkiwi\core\Helper\JsonHelper;
 use noxkiwi\lightsystem\Frontend\Screen\OpcitemScreen;
 use noxkiwi\database\Database;
+use function explode;
+use function file_put_contents;
+use function implode;
+use function var_dump;
 
 /**
  * I am
  *
  * @package      noxkiwi\lightsystem
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2018 noxkiwi
  * @version      1.0.0
@@ -86,7 +90,7 @@ final class DashboardContext extends Context
         FrontendHelper::addResource('js', 'Plugin');
         FrontendHelper::addResource('js', 'Control');
         FrontendHelper::addResource('js', 'ActivityMonitorControl');
-        FrontendHelper::addResource('js', 'AlarmConfigControl');
+        FrontendHelper::addResource('js', 'AlarmValueControl');
         FrontendHelper::addResource('js', 'BaseClient');
         FrontendHelper::addResource('js', 'AlarmClient');
         FrontendHelper::addResource('js', 'EventClient');
@@ -142,11 +146,11 @@ final class DashboardContext extends Context
                 'debugmode'      => (int)$this->request->get('debugmode', 0) === 1
             ],
             'defaults'      => [
-                'firstpanel'     => (int)$this->request->get('firstpanel', 1003),
+                'firstpanel'     => (int)$this->request->get('firstpanel', 1),
                 'firstpaneldata' => $this->request->get(
                     'firstpaneldata',
                     [
-                        'tag' => ''
+                        'tag' => 'HOME'
                     ]
                 )
             ],

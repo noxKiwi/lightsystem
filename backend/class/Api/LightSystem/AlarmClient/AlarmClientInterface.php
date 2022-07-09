@@ -7,7 +7,7 @@ use noxkiwi\lightsystem\Api\LightSystem\AbstractClient\AbstractClientInterface;
  * I am the AlarmClient interface.
  *
  * @package      noxkiwi\lightsystem
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2019 noxkiwi
  * @version      1.0.0
@@ -15,13 +15,13 @@ use noxkiwi\lightsystem\Api\LightSystem\AbstractClient\AbstractClientInterface;
  */
 interface AlarmClientInterface extends AbstractClientInterface
 {
-    public const VALENCE_CAME = 1;
-    public const VALENCE_GONE = 0;
+    public const VALENCE_ENGAGED = 1;
+    public const VALENCE_DISENGAGED = 0;
     public const VALENCE_NONE = -1;
     public const AREAS_ALL    = '*';
 
     /**
-     * I will return the amount of alarms that have not gone yet.
+     * I will return the amount of alarms that have not disengaged yet.
      * @return int
      */
     public function count(): int;
@@ -43,5 +43,7 @@ interface AlarmClientInterface extends AbstractClientInterface
      * I will acknowledge all alarms.
      */
     public function acknowledgeAll(): void;
+
+    public function getInfo(int $opcNodeId):AlarmInformation;
 }
 

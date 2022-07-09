@@ -9,7 +9,7 @@ use noxkiwi\queue\Message;
  * I represent a command that shall be sent by the Consumer.
  *
  * @package      noxkiwi\lightsystem\Message
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2020 noxkiwi
  * @version      1.0.0

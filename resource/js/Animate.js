@@ -1,12 +1,12 @@
 "use strict";
 
-var animationData = {
+const animationData = {
     /**
      * I am a collection of attributes that can be animated through the attr() function.
      * @type string[]
      */
-    attribute : ["width", "height", "x", "y", "fill", "fill-opacity", "stroke", "stroke-opacity", "rx", "ry", "cx", "cy", "title", "visibility", "class"],
-    lastcolor : 0,
+    attribute: ["width", "height", "x", "y", "fill", "fill-opacity", "stroke", "stroke-opacity", "rx", "ry", "cx", "cy", "title", "visibility", "class"],
+    lastcolor: 0,
 
     /**
      * I am an object that contains animations that cannot be animated through the attr() function.
@@ -15,22 +15,23 @@ var animationData = {
      * VALUE is a function (pointer, value, tag)
      * @type {{text: animationRoute.text, blink: animationRoute.blink}}
      */
-    route : {
-        blink   : function (pointer, value, tag) {
+    route: {
+        blink: function (pointer, value, tag) {
             runtime.visualization.blink.objects[tag] = {
-                "DOMelement" : pointer,
-                "colors"     : value.colors
+                DOMelement: pointer,
+                colors: JSON.parse(value.value).colors
             };
+            return true;
         },
-        noblink : function (pointer, value, tag) {
+        noblink: function (pointer, value, tag) {
             runtime.visualization.blink.objects[tag] = null;
             Animate.animate(pointer, "fill", value);
         },
-        rotate  : function (pointer, value, tag) {
+        rotate: function (pointer, value, tag) {
             let s = Snap("[finaltag=\"" + tag + "\"]");
             s.transform("r" + parseFloat(value["value"]));
         },
-        image   : function (pointer, value, tag) {
+        image: function (pointer, value, tag) {
             let element = $("[finaltag=\"" + tag + "\"]");
             if (element.prop("tagName") !== "image") {
                 Log.Info(tag + " is not an image element.");
@@ -38,7 +39,7 @@ var animationData = {
             }
             element.attr("xlink:href", "/" + value["value"] + ".svg");
         },
-        text    : function (pointer, value, tag) {
+        text: function (pointer, value, tag) {
             if ($(pointer).prop("tagName") !== "text") {
                 Log.Info(tag + " is not a text element.");
                 return;
@@ -52,8 +53,7 @@ var animationData = {
  * I am the animation class.
  * Give me a tag and an animation, I'll handle the rest.
  */
-class Animate
-{
+class Animate {
     /**
      * I will iterate blinkObjects and use each element's next color.
      */
@@ -65,7 +65,7 @@ class Animate
             animationData.lastcolor = 0;
         }
         for (let tag in runtime.visualization.blink.objects) {
-            if (! runtime.visualization.blink.objects.hasOwnProperty(tag)) {
+            if (!runtime.visualization.blink.objects.hasOwnProperty(tag)) {
                 continue;
             }
 

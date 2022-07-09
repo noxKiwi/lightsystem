@@ -12,7 +12,7 @@ use function explode;
  *  - attributes    @package      noxkiwi\LightSystem
  * @see          \noxkiwi\lightsystem\Render\AttributeRender
  *
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2018 noxkiwi
  * @version      1.0.0
@@ -48,8 +48,8 @@ final class SvgtagRender extends Render
     public function render(array $data): string
     {
         $element = $this->getElement();
-        $this->renderAttributes(explode(',', (string)$element->render_svgtag_attributes_required), true);
-        $this->renderAttributes(explode(',', (string)$element->render_svgtag_attributes_optional), false);
+        $this->renderAttributes((array)json_decode((string)$element->render_svgtag_requiredattributes, true), true);
+        $this->renderAttributes((array)json_decode((string)$element->render_svgtag_optionalattributes, true), false);
 
         return $this->getRenderString();
     }
@@ -71,7 +71,13 @@ final class SvgtagRender extends Render
         $config         = $this->getConfig();
         $attributeModel = AttributeModel::getInstance();
         foreach ($attributeIds as $attributeId) {
-            $attribute       = $attributeModel->loadEntry("00000" . $attributeId);
+            if(empty($attributeId)) {
+                continue;
+            }
+            $attribute       = $attributeModel->loadEntry($attributeId);
+            if(empty($attribute)) {
+                continue;
+            }
             $attributeRender = new AttributeRender($attribute, $config->get(), $required);
             $attributeString = $attributeRender->render($this->getRenderData());
             $this->setRenderString($attributeString);

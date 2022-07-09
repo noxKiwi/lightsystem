@@ -5,12 +5,13 @@ use noxkiwi\core\Frontend\Icon;
 use noxkiwi\core\Frontend\Renderable\HTML\Div;
 use noxkiwi\core\Traits\TranslationTrait;
 use ReflectionClass;
+use function uniqid;
 
 /**
  * I am the blank control class.
  *
  * @package      noxkiwi\lightsystem\Frontend
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2019 noxkiwi
  * @version      1.0.0

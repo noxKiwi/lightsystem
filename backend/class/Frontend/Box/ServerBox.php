@@ -10,7 +10,7 @@ use noxkiwi\lightsystem\Model\OpcServerModel;
  * I am the blank control class.
  *
  * @package      noxkiwi\lightsystem\Frontend
- * @author       Jan Nox <jan@nox.kiwi>
+ * @author       Jan Nox <jan.nox@pm.me>
  * @license      https://nox.kiwi/license
  * @copyright    2019 noxkiwi
  * @version      1.0.0
@@ -29,14 +29,14 @@ final class ServerBox extends Box
         $this->setContent($content);
     }
 
-	/**
-	 * @param array|null $options
-	 *
-	 * @throws \ReflectionException
-	 * @throws \noxkiwi\dataabstraction\Exception\EntryInconsistentException
-	 * @throws \noxkiwi\dataabstraction\Exception\EntryMissingException
-	 * @throws \noxkiwi\dataabstraction\Exception\ModelException
-	 */
+    /**
+     * @param array|null $options
+     *
+     * @throws \ReflectionException
+     * @throws \noxkiwi\dataabstraction\Exception\EntryInconsistentException
+     * @throws \noxkiwi\dataabstraction\Exception\EntryMissingException
+     * @throws \noxkiwi\dataabstraction\Exception\ModelException
+     */
     protected function setOptions(?array $options): void
     {
         parent::setOptions($options);
