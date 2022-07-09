@@ -12,7 +12,8 @@ class TimeSwitchControl extends Control
         };
         Translate.addTranslations("deDE", {});
         Translate.addTranslations("enUS", {});
-        this.show('HOME.RELAY07.SETPOINT');
+
+        this.show($(this.pointer).find("[tag]").attr("tag") + '.SETPOINT');
     }
 
     static getInstance() {
@@ -23,9 +24,10 @@ class TimeSwitchControl extends Control
     }
 
     show(tag) {
+        let self = this;
         this.getInfo(tag, function (response) {
-            TimeSwitchControl.getInstance().prepare("#99Content", response.timeswitch);
-            TimeSwitchControl.getInstance().render();
+            self.prepare("#99Content", response.timeswitch);
+            self.render();
         });
     }
 
@@ -37,19 +39,19 @@ class TimeSwitchControl extends Control
         });
     }
 
-    static save() {
+    save() {
         let obj;
         if (typeof (runtime.instances.TimeSwitchControl) === "undefined") {
             return;
         }
         obj = {
-            monday    : TimeSwitchControl.getInstance().getDayString(0),
-            tuesday   : TimeSwitchControl.getInstance().getDayString(1),
-            wednesday : TimeSwitchControl.getInstance().getDayString(2),
-            thursday  : TimeSwitchControl.getInstance().getDayString(3),
-            friday    : TimeSwitchControl.getInstance().getDayString(4),
-            saturday  : TimeSwitchControl.getInstance().getDayString(5),
-            sunday    : TimeSwitchControl.getInstance().getDayString(6)
+            monday    : this.getDayString(0),
+            tuesday   : this.getDayString(1),
+            wednesday : this.getDayString(2),
+            thursday  : this.getDayString(3),
+            friday    : this.getDayString(4),
+            saturday  : this.getDayString(5),
+            sunday    : this.getDayString(6)
         };
         Core.ajaxRequest({
             url  : "/?context=timeswitch&view=set&timeswitch_id=1",
@@ -174,7 +176,7 @@ class TimeSwitchControl extends Control
           <button class="` + this.btnSize + ` btn-secondary" onClick="TsRuntime.drawMode='off';" type="button"><i class="fa fa-times"></i></button>
           <button class="` + this.btnSize + ` btn-secondary" onClick="TsRuntime.drawMode='s';" type="button"><i class="fa fa-random"></i></button>
           <button class="` + this.btnSize + ` btn-secondary" onClick="ItemManager.write('` + this.tsEntry.auto_address + `', 'VOID');" type="button" style="color:lime;"><i class="fa fa-power-off"></i></button>
-          <button class="` + this.btnSize + ` btn-secondary" onClick="TimeSwitchControl.save()"><i class="fa fa-save"></i></button>
+          <button class="` + this.btnSize + ` btn-secondary" onClick="window.runtime.controls.TimeSwitchControl[0].save()"><i class="fa fa-save"></i></button>
         </div>
     </div>
     <div class="col-md-9">
@@ -253,11 +255,11 @@ class TimeSwitchControl extends Control
         let tsClass = "off",
             myVal   = this.getValueAt(day, offset),
             test    = "";
-        if (myVal === 1) {
+        if (myVal == 1) {
             tsClass = "on";
         }
-        if(offset % 4 === 0) {
-            test = 'style="border-left:2px solid white;"';
+        if(offset % 4 == 0) {
+            test = 'style="border-left:1px solid white;"';
         }
         return `<td class="tsField ` + tsClass + `" `+ test +` data-hour="` + hour + `" data-day="` + day + `" data-offset="` + offset + `"></td>`;
     }
