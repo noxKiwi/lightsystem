@@ -1,7 +1,6 @@
 <?php declare(strict_types = 1);
 namespace noxkiwi\lightsystem\Api\Telegram;
 
-use noxkiwi\core\Traits\ErrorstackTrait;
 use function curl_exec;
 use function curl_init;
 use function curl_setopt;
@@ -21,7 +20,6 @@ use const CURLOPT_URL;
  */
 final class Telegram
 {
-    use ErrorstackTrait;
 
     public function send(Request $message): void
     {
